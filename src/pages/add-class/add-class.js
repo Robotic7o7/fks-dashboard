@@ -29,6 +29,8 @@ function AddClass() {
     useEffect(()=>{
     },[teacherList, studentList])
 
+
+    function submitForm(){}
     return (
         <div className="form-container">
             <span className="form-title">Create New Class</span>

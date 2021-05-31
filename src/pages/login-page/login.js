@@ -6,6 +6,15 @@ function LoginPage() {
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
 
+    function submitForm(){
+
+        //validate
+
+
+        //http
+
+    }
+
     return (
         <div className="form-container">
             <span className="form-title">Login Here</span>
@@ -17,7 +26,7 @@ function LoginPage() {
                 <label className="form-field-label" value={password} onChange={e=>{e.preventDefault();setPassword(e.target.value)}}>Password</label>
                 <input className="form-field" type="password" />
             </div>
-            <button className="submit-button">SUBMIT</button>
+            <button className="submit-button" onClick={e=>{e.preventDefault();submitForm()}}>SUBMIT</button>
         </div>
     )
 }
