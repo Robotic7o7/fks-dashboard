@@ -1,0 +1,24 @@
+.form-field-2{
+    display: inline-block;
+}
+
+.add-button{
+    display: inline-block;
+    padding:11px 20px;  
+}
+
+.teacher-list-item{
+    display: block;
+    width:fit-content;
+    padding:5px 10px 5px 20px;
+    font-family: 'comicSans', sans-serif;
+    border: 1px solid #000;
+    border-radius: 20px;
+    margin:5px 5px 0 0;
+    cursor: pointer;
+}
+
+.teacher-list-item-delete{
+    display: inline-block;
+    margin-left:10px;
+}
