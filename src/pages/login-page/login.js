@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css"
 
 function LoginPage() {
+
+    const [userId, setUserId] = useState('')
+    const [password, setPassword] = useState('')
+
     return (
         <div className="form-container">
             <span className="form-title">Login Here</span>
             <div className="form-field-container">
-                <label className="form-field-label">User Id</label>
+                <label className="form-field-label" value={userId} onChange={e=>{e.preventDefault();setUserId(e.target.value)}}>User Id</label>
                 <input className="form-field" type="text" />
             </div>
             <div className="form-field-container">
-                <label className="form-field-label">Password</label>
+                <label className="form-field-label" value={password} onChange={e=>{e.preventDefault();setPassword(e.target.value)}}>Password</label>
                 <input className="form-field" type="password" />
             </div>
             <button className="submit-button">SUBMIT</button>
