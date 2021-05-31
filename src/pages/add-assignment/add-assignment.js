@@ -1,7 +1,17 @@
 import React from "react";
+import {useState} from "react";
 import "./add-assignment.css"
 
 function AddAssignment() {
+
+    const [assignmentName, setAssignmentName] = useState('');
+    const [assignmentCategory, setAssignmentCategory] = useState('');
+    const [assignmentDueDate, setAssignmentDueDate] = useState('');
+    const [isGraded, setIsGraded] = useState('');
+    const [classList, setClassList] = useState('');
+    const [studentList, setStudentList] = useState('');
+    const [assignmentSubject, setAssignmentSubject] = useState('');
+    const [questionList, setQuestionList] = useState('');
 
     function addQuestion(e){
         var addAssignmentForm=document.getElementById('add-assignment-form')
@@ -78,36 +88,95 @@ function AddAssignment() {
         addAssignmentForm.insertBefore(questionContainer, document.getElementsByClassName('submit-button')[0])
     }
 
+    function addAssignment(){
+        var validated = 1;
+        if (!assignmentName) {
+            validated = 0;
+            document.getElementById('assignment-name').style.border = "1px solid red";
+        }
+
+        if (!assignmentCategory) {
+            validated = 0;
+            document.getElementById('assignment-category').style.border = "1px solid red";
+        }
+
+        if (!assignmentDueDate) {
+            validated = 0;
+            document.getElementById('assignment-due-date').style.border = "1px solid red";
+        }
+
+        
+        if (!isGraded) {
+            validated = 0;
+            document.getElementById('is-graded').style.border = "1px solid red";
+        }
+
+        if (!assignmentSubject) {
+            validated = 0;
+            document.getElementById('assignment-subject').style.border = "1px solid red";
+        }
+
+        if (validated == 1) {
+            fetch('http://128.199.17.29:3000/subjects/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    assignment_name:assignmentName,
+                    assignment_category:assignmentCategory,
+                    assignment_due_date:assignmentDueDate,
+                    is_graded:isGraded,
+                    assignment_subject:assignmentSubject
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                    }
+    
+                    else {
+                        alert("Please try again!")
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+    
+        }
+    }
+
     return (
         <div className="form-container" id="add-assignment-form">
             <span className="form-title">Add New Assignment</span>
             <div className="form-field-container">
                 <label className="form-field-label">Assignment Name</label>
-                <input className="form-field" type="text" />
+                <input className="form-field" type="text" id="assignment-name" value={assignmentName} onChange={e=>{e.preventDefault(); setAssignmentName(e.target.value)}} />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Category</label>
-                <input className="form-field" type="text" />
+                <input className="form-field" type="text" id="assignment-category" value={assignmentCategory} onChange={e=>{e.preventDefault(); setAssignmentCategory(e.target.value)}} />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Due Date</label>
-                <input className="form-field" type="date" />
+                <input className="form-field" type="date" id="assignment-due-date" value={assignmentDueDate} onChange={e=>{e.preventDefault(); setAssignmentDueDate(e.target.value)}} />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Is it graded?</label>
-                <input className="form-field" type="text" />
+                <input className="form-field" type="text" id="is-graded" value={isGraded} onChange={e=>{e.preventDefault(); setIsGraded(e.target.value)}} />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Class List</label>
-                <input className="form-field" type="text" />
+                <input className="form-field" type="text" id="class-list" />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Student List</label>
-                <input className="form-field" type="text" />
+                <input className="form-field" type="text" id="student-list" />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Subject</label>
-                <input className="form-field" type="text" />
+                <input className="form-field" type="text" id="assignment-subject" value={assignmentSubject} onChange={e=>{e.preventDefault(); setAssignmentSubject(e.target.value)}} />
             </div>
             <div className="question-container">
                 <div className="form-field-container">
@@ -140,7 +209,7 @@ function AddAssignment() {
                 </div>
             </div>
             <button className="submit-button" onClick={e=>{addQuestion(e)}}>Add Another Question</button>
-            <button className="submit-button">SUBMIT</button>
+            <button className="submit-button" onClick={addAssignment}>SUBMIT</button>
         </div>
     )
 }
