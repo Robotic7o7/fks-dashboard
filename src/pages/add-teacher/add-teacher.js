@@ -58,13 +58,15 @@ function submitTeacher(){
             .then(data => {
                 if (data.message != "failed") {
                     console.log(data)
+                    showNotifSuccess()
                 }
 
                 else {
-                    alert("Please try again!")
+                    showNotifFailed()
                 }
             })
             .catch((error) => {
+                showNotifFailed()
                 console.error('Error:', error);
             });
 
@@ -72,7 +74,20 @@ function submitTeacher(){
 
 }
 
+function showNotifSuccess(){
+    document.getElementById("notif-success").style.display="block";
+}
+
+function showNotifFailed(){
+    document.getElementById("notif-failed").style.display="block";
+}
+
+function closeNotif(){
+    document.getElementById("notif-success").style.display="none";
+    document.getElementById("notif-failed").style.display="none";
+}
     return (
+        <>
         <div className="form-container">
             <span className="form-title">Add Teacher</span>
             <div className="form-field-container">
@@ -101,6 +116,20 @@ function submitTeacher(){
             </div>
             <button className="submit-button" onClick={submitTeacher}>SUBMIT</button>
         </div>
+        <div className="notif-component-success"id="notif-success">
+            <label className="notif-component-text">Success!</label>
+            <br/>
+            <label className="notif-component-message">Teacher added.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+
+        <div className="notif-component-failed" id="notif-failed">
+            <label className="notif-component-text">Failed!</label>
+            <br/>
+            <label className="notif-component-message">Error occured, try again.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+        </>
     )
 }
 

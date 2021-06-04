@@ -102,3 +102,52 @@ table{
 .hidden{
   display: none;
 }
+
+.notif-component-success{
+  display:none;
+  height:70px;
+  width:300px;
+  border-left:4px solid green;
+  border-radius:5px;
+  position:absolute;
+  top:100px;
+  right:10px;
+  box-shadow: 5px 10px 30px #88888871;
+  box-sizing:border-box;
+  padding:10px;
+}
+
+.notif-component-failed{
+  display:none;
+  height:70px;
+  width:300px;
+  border-left:4px solid red;
+  border-radius:5px;
+  position:absolute;
+  top:100px;
+  right:10px;
+  box-shadow: 5px 10px 30px #88888871;
+  box-sizing:border-box;
+  padding:10px;
+}
+
+.notif-component-text{
+  font-family: 'comicSans', sans-serif;
+  font-size: 18px;
+  color:#000;
+  margin-bottom:10px;
+}
+
+.notif-component-message{
+  font-family: 'comicSans', sans-serif;
+  font-size: 14px;
+  color:#000;
+}
+
+.notif-closeIcon{
+  position:absolute;
+  top:-10px;
+  right:-5px;
+  height:20px;
+  width:20px;
+}
