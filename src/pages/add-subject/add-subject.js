@@ -1,12 +1,12 @@
 import React from "react";
-import {useState} from "react";
+import { useState } from "react";
 import "./add-subject"
 
 function AddSubject() {
 
     const [subject, setSubject] = useState('')
 
-    function addSubject(){
+    function addSubject() {
         var validated = 1;
         if (!subject) {
             validated = 0;
@@ -14,13 +14,13 @@ function AddSubject() {
         }
 
         if (validated == 1) {
-            fetch('http://128.199.17.29:3000/subjects/add', {
+            fetch('http://localhost:3000/subjects/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    subject_name:subject
+                    subject_name: subject
                 }),
             })
                 .then(response => response.json())
@@ -28,7 +28,7 @@ function AddSubject() {
                     if (data.message != "failed") {
                         console.log(data)
                     }
-    
+
                     else {
                         alert("Please try again!")
                     }
@@ -36,7 +36,7 @@ function AddSubject() {
                 .catch((error) => {
                     console.error('Error:', error);
                 });
-    
+
         }
     }
     return (
@@ -44,7 +44,7 @@ function AddSubject() {
             <span className="form-title">Add New Subject</span>
             <div className="form-field-container">
                 <label className="form-field-label">Subject Name</label>
-                <input className="form-field" id="subject" type="text" value={subject} onChange={e=>{e.preventDefault(); setSubject(e.target.value)}} />
+                <input className="form-field" id="subject" type="text" value={subject} onChange={e => { e.preventDefault(); setSubject(e.target.value) }} />
             </div>
             <button className="submit-button" onClick={addSubject}>SUBMIT</button>
         </div>

@@ -1,0 +1,17 @@
+.view-assignment-list{
+    margin-top:120px;
+}
+
+.assignment-list{
+    width:fit-content;
+    margin:50px 100px 0 350px;
+}
+
+.assignment-name{
+    display:block;
+    font-size:24px;
+    font-family: 'comicSans', sans-serif;
+    margin-bottom:30px;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+}

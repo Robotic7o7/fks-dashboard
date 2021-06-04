@@ -117,7 +117,7 @@ function AddAssignment() {
         }
 
         if (validated == 1) {
-            fetch('http://128.199.17.29:3000/subjects/add', {
+            fetch('http://localhost:3000/subjects/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

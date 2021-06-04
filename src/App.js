@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -8,20 +7,33 @@ import AddClass from './pages/add-class/add-class';
 import AddStudent from './pages/add-student/add-student';
 import AddTeacher from './pages/add-teacher/add-teacher';
 import AddAssignment from './pages/add-assignment/add-assignment';
+import ViewAssignmentList from './pages/view-assignment-list/view-assignment-list';
+import ViewAssignment from './pages/view-assignment/view-assignment';
+import ViewAdminList from './pages/view-admin-list/view-admin-list';
+import ViewAdmin from './pages/view-admin/view-admin';
+import ViewParent from './pages/view-parent/view-parent';
+import ViewStudentList from './pages/view-student-list/view-student-list';
+import ViewStudent from './pages/view-student/view-student';
+import ViewTeacher from './pages/view-teacher/view-teacher';
+import ViewTeacherList from './pages/view-teacher-list/view-teacher-list';
+import Nav from './components/nav/nav';
+import SideNav from './components/side-nav/side-nav'
 
 function App() {
   return (
     <div>
       <Router>
+        <Nav />
+        <SideNav />
         <Switch>
           <Route exact path="/login">
-           <LoginPage/>
+            <LoginPage />
           </Route>
           <Route exact path="/add-subject">
-           <AddSubject />
+            <AddSubject />
           </Route>
           <Route exact path="/add-class">
-           <AddClass />
+            <AddClass />
           </Route>
           <Route exact path="/add-student">
             <AddStudent />
@@ -31,6 +43,33 @@ function App() {
           </Route>
           <Route exact path="/add-assignment">
             <AddAssignment />
+          </Route>
+          <Route exact path="/view-assignment-list">
+            <ViewAssignmentList />
+          </Route>
+          <Route exact path="/view-assignment/:id">
+            <ViewAssignment />
+          </Route>
+          <Route exact path="/view-admin-list">
+            <ViewAdminList />
+          </Route>
+          <Route exact path="/view-admin/:id">
+            <ViewAdmin />
+          </Route>
+          <Route exact path="/view-parent/:id">
+            <ViewParent />
+          </Route>
+          <Route exact path="/view-student-list">
+            <ViewStudentList />
+          </Route>
+          <Route exact path="/view-student/:id">
+            <ViewStudent />
+          </Route>
+          <Route exact path="/view-teacher-list">
+            <ViewTeacherList />
+          </Route>
+          <Route exact path="/view-teacher/:id">
+            <ViewTeacher />
           </Route>
         </Switch>
       </Router>

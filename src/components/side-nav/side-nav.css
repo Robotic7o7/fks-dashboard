@@ -1,0 +1,19 @@
+.side-nav{
+    width:250px;
+    height:100vh;
+    background-color: #ccc;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 2;
+    padding:80px 0 0 0;
+}
+
+.side-nav-item{
+    background-color: #999;
+    display: block;
+    padding:10px 20px;
+    box-sizing: border-box;
+    font-family: 'comicSans', sans-serif;
+    border-bottom: 1px solid #aaa;
+}

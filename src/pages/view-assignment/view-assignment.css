@@ -1,0 +1,26 @@
+
+.view-assignment{
+    margin-top:120px;
+}
+
+.assignment-details{
+    width:fit-content;
+    margin:50px 100px 0 350px;
+}
+
+.assignment-details-name{
+    font-size:24px;
+    font-family: 'comicSans',sans-serif;
+}
+
+.question{
+    margin:20px 0 20px 0;
+}
+.question-value{
+    font-family:'comicSans',sans-serif;
+    display: block;
+}
+
+.question-option{
+    display: block;
+}
