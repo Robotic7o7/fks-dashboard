@@ -1,3 +1,38 @@
 .view-teacher-list{
     margin-top:120px;
+    overflow:hidden;
+}
+
+.teacher-sort-bar{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    height:50px;
+    width:100%;
+    position:relative;
+    left:250px;
+    background-color:#ccc;
+}
+
+.query-field{
+    height:30px;
+    width:200px;
+    border-radius:4px;
+    border:1px solid #000;
+    margin:10px;
+}
+
+.query-button{
+    height:30px;
+    width:auto;
+    background-color:#FB4736;
+    border:none;
+    border-radius:4px;
+    margin-right:10px;
+    font-family: 'comicSans', sans-serif;
+}
+
+
+.query-function-container{
+    margin-left:100px;
 }
