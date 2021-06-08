@@ -1,16 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import "./view-teacher-list.css"
+import "./view-subject-list.css"
 
 
-function ViewTeacherList() {
+function ViewSubjectList() {
 
-    const [teacherList, setTeacherList] = useState([])
+    const [subjectList, setsubjectList] = useState([])
 
     useEffect(() => {
 
-        fetch('http://localhost:3000/users/filter_users_by_role/3', {
+        fetch('http://localhost:3000/subjects/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ function ViewTeacherList() {
         })
             .then(res => res.json())
             .then(data => {
-                setTeacherList(data)
-                console.log(teacherList)
+                setsubjectList(data)
+                console.log(subjectList)
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -27,7 +27,7 @@ function ViewTeacherList() {
     }, [])
 
     return (
-        <div className="view-teacher-list">
+        <div className="view-subject-list">
             <div className="teacher-sort-bar">
                 <input className="query-field" type="text" />
                 <button className="query-button">Search</button>
@@ -37,23 +37,21 @@ function ViewTeacherList() {
             <button className="query-button">Sort Alphabetically</button>
            </div> */}
             </div>
+
             <table>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
+                    <th>Subject Name</th>
+                    <th>Subscribers</th>
                     <th>Options</th>
                 </tr>
-                {teacherList.map((item) => {
+                {subjectList.map((item) => {
                     return (
                         <tr>
-                            <td>{item.first_name}</td>
-                            <td>{item.last_name}</td>
-                            <td>{item.email}</td>
+                            <td>{item.subject_name}</td>
+                            <td>3</td>
                             <td>
-                                <Link to={"/view-teacher/" + item.user_id} className="action-item">View Details</Link><br />
-                                <span className="action-item">Assign Class</span><br />
-                                <span className="action-item">Update Password</span>
+                                <Link to={"/view-student/" + item.user_id} className="action-item">Edit</Link><br />
+                                <span className="action-item">Disable</span>
                             </td>
                         </tr>
                     )
@@ -63,4 +61,4 @@ function ViewTeacherList() {
     )
 }
 
-export default ViewTeacherList;
+export default ViewSubjectList;

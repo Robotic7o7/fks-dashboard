@@ -18,6 +18,9 @@ import ViewTeacher from './pages/view-teacher/view-teacher';
 import ViewTeacherList from './pages/view-teacher-list/view-teacher-list';
 import Nav from './components/nav/nav';
 import SideNav from './components/side-nav/side-nav'
+import ViewAssignmentListT from './pages/view-assignment-list-t/view-assignment-list-t';
+import ViewClassList from './pages/view-class-list/view-class-list';
+import ViewSubjectList from './pages/view-subject-list/view-subjects-list';
 
 function App() {
   return (
@@ -70,6 +73,15 @@ function App() {
           </Route>
           <Route exact path="/view-teacher/:id">
             <ViewTeacher />
+          </Route>
+          <Route exact path="/view-assignment-list-t">
+            <ViewAssignmentListT />
+          </Route>
+          <Route exact path="/view-class-list">
+            <ViewClassList />
+          </Route>
+          <Route exact path="/view-subject-list">
+            <ViewSubjectList />
           </Route>
         </Switch>
       </Router>

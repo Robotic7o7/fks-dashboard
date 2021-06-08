@@ -2,7 +2,9 @@
   font-family: comicSans;
   src: url(./comic.ttf);
 }
-
+body{
+  background-color: #F9F9F9;
+}
 .form-field {
   display: block;
   padding: 10px;
@@ -45,7 +47,13 @@
 .form-container {
   display: block;
   width: fit-content;
-  margin: 200px auto 0 auto;
+  margin: 100px auto 0 auto;
+}
+
+.form-container-with-border{
+  padding:50px 100px;
+  border-radius: 4px;
+  background-color: #fff;
 }
 
 .form-title {
@@ -96,7 +104,9 @@ tr:nth-child(even){
 
 table{
   width:fit-content;
-  margin:100px auto 0 auto;
+  margin:50px auto 50px auto;
+  position: relative;
+  left:60px;
 }
 
 .hidden{
@@ -150,4 +160,23 @@ table{
   right:-5px;
   height:20px;
   width:20px;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
 }

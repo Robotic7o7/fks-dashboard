@@ -28,6 +28,15 @@ function ViewStudentList() {
 
     return (
         <div className="view-student-list">
+            <div className="teacher-sort-bar">
+                <input className="query-field" type="text" />
+                <button className="query-button">Search</button>
+                {/* <div className="query-function-container">
+           <button className="query-button">Sort Asscending</button>
+            <button className="query-button">Sort Descending</button>
+            <button className="query-button">Sort Alphabetically</button>
+           </div> */}
+            </div>
 
             <table>
                 <tr>

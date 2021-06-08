@@ -36,6 +36,15 @@ function ViewAssignment(props) {
     if (assignment) {
         return (
             <div className="view-assignment">
+                <div className="teacher-sort-bar">
+                    <button className="submit-button submit-assignment-button">Submit Assignment</button>
+                    {/* <div className="query-function-container">
+           <button className="query-button">Sort Asscending</button>
+            <button className="query-button">Sort Descending</button>
+            <button className="query-button">Sort Alphabetically</button>
+           </div> */}
+                </div>
+
                 <div className="assignment-details">
                     <span className="assignment-details-name">{assignment[0].assignment_name}</span>
                     {JSON.parse(assignment[0].assignment_value).map((item) => {

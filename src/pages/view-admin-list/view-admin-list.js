@@ -28,6 +28,15 @@ function ViewAdminList() {
 
     return (
         <div className="view-admin-list">
+            <div className="teacher-sort-bar">
+                <input className="query-field" type="text" />
+                <button className="query-button">Search</button>
+                {/* <div className="query-function-container">
+           <button className="query-button">Sort Asscending</button>
+            <button className="query-button">Sort Descending</button>
+            <button className="query-button">Sort Alphabetically</button>
+           </div> */}
+            </div>
 
             <table>
                 <tr>
@@ -43,7 +52,7 @@ function ViewAdminList() {
                             <td>{item.last_name}</td>
                             <td>{item.email}</td>
                             <td>
-                                <Link to={"/view-admin/"+item.user_id} className="action-item">View Details</Link><br />
+                                <Link to={"/view-admin/" + item.user_id} className="action-item">View Details</Link><br />
                                 <span className="action-item">Update Access</span><br />
                                 <span className="action-item">Update Password</span>
                             </td>

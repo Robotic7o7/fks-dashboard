@@ -1,19 +1,47 @@
 .nav{
-    height:80px;
+    height:60px;
     width:100vw;
-    background-color: #eee;
+    background-color: #fff;
     box-sizing: border-box;
-    padding:0 100px 0 300px;
+    padding:0 50px 0 300px;
     position: fixed;
     top:0;
     left:0;
+    border-bottom: 1px solid #ddd;
+    z-index: 100;
+}
+
+.nav-right{
+    float:right;
 }
 
 .nav-item{
     font-family: 'comicSans', sans-serif;
     display: inline-block;
+    margin:15px 0px 0 30px;
+    cursor: pointer;
 }
+
 .nav-logo{
     font-size: 24px;
     margin-top:25px;
+}
+
+.user-icon{
+    width:25px;
+    fill:#606060;
+}
+
+.notification-icon{
+    width:15px;
+    position: relative;
+    top:-3px;
+    fill:#606060;
+}
+
+.mail-icon{
+    width:17px;
+    fill: #606060;
+    position: relative;
+    top:-5px;
 }

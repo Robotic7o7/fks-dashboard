@@ -1,11 +1,19 @@
 
 .view-assignment{
-    margin-top:120px;
+    margin-top:160px;
+    margin-bottom: 100px;
 }
 
 .assignment-details{
     width:fit-content;
     margin:50px 100px 0 350px;
+    background-color: #fff;
+    width:1000px;
+    height:1000px;
+    padding:60px 80px;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 10px #ccc;
+    border-radius: 4px;
 }
 
 .assignment-details-name{
@@ -23,4 +31,16 @@
 
 .question-option{
     display: block;
+}
+
+.submit-assignment-button{
+    margin-left:50px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+}
+
+.submit-assignment-button:hover{
+    background-color: #ddd;
+    border-color:#aaa;
+    font-weight:400;
 }

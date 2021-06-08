@@ -48,7 +48,7 @@ function LoginPage() {
     }
 
     return (
-        <div className="form-container">
+        <div className="form-container form-container-with-border">
             <span className="form-title">Login Here</span>
             <div className="form-field-container">
                 <label className="form-field-label" >User Id</label>
