@@ -26,7 +26,72 @@ function ViewSubjectList() {
             });
     }, [])
 
+    function disableSubject(id){
+        fetch(`http://localhost:3000/subjects/id/${id}/disable`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess()
+                    }
+
+                    else {
+                        showNotifFailed()                        
+                    }
+                })
+                .catch((error) => {
+                    showNotifFailed()
+                    console.error('Error:', error);
+                });
+
+    }
+
+    function deleteSubject(id){
+        fetch(`http://localhost:3000/subjects/id/${id}/permanent_delete`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess()
+                    }
+
+                    else {
+                        showNotifFailed()                        
+                    }
+                })
+                .catch((error) => {
+                    showNotifFailed()
+                    console.error('Error:', error);
+                });
+
+    }
+
+    function showNotifSuccess(){
+        document.getElementById("notif-success").style.display="block";
+    }
+
+    function showNotifFailed(){
+        document.getElementById("notif-failed").style.display="block";
+    }
+
+    function closeNotif(){
+        document.getElementById("notif-success").style.display="none";
+        document.getElementById("notif-failed").style.display="none";
+    }
+
+
     return (
+        <>
         <div className="view-subject-list">
             <div className="teacher-sort-bar">
                 <input className="query-field" type="text" />
@@ -51,13 +116,28 @@ function ViewSubjectList() {
                             <td>3</td>
                             <td>
                                 <Link to={"/view-student/" + item.user_id} className="action-item">Edit</Link><br />
-                                <span className="action-item">Disable</span>
+                                <span className="action-item" onClick={e=>{disableSubject(item.subject_id)}}>Disable</span>&nbsp;
+                                <span className="action-item" onClick={e=>{deleteSubject(item.subject_id)}}>Delete</span>
                             </td>
                         </tr>
                     )
                 })}
             </table>
         </div>
+        <div className="notif-component-success"id="notif-success">
+            <label className="notif-component-text">Success!</label>
+            <br/>
+            <label className="notif-component-message">Operation done.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+
+        <div className="notif-component-failed" id="notif-failed">
+            <label className="notif-component-text">Failed!</label>
+            <br/>
+            <label className="notif-component-message">Error occured, try again.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+        </>
     )
 }
 

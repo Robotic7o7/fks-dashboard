@@ -120,7 +120,7 @@ table{
   border-left:4px solid green;
   border-radius:5px;
   position:absolute;
-  top:100px;
+  top:150px;
   right:10px;
   box-shadow: 5px 10px 30px #88888871;
   box-sizing:border-box;
@@ -134,7 +134,7 @@ table{
   border-left:4px solid red;
   border-radius:5px;
   position:absolute;
-  top:100px;
+  top:150px;
   right:10px;
   box-shadow: 5px 10px 30px #88888871;
   box-sizing:border-box;

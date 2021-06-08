@@ -26,7 +26,72 @@ function ViewClassList() {
             });
     }, [])
 
+
+    function disableClass(id){
+        fetch(`http://localhost:3000/classes/id/${id}/disable`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess()
+                    }
+
+                    else {
+                        showNotifFailed()                        
+                    }
+                })
+                .catch((error) => {
+                    showNotifFailed()
+                    console.error('Error:', error);
+                });
+
+    }
+
+    function deleteClass(id){
+        fetch(`http://localhost:3000/classes/id/${id}/permanent_delete`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess()
+                    }
+
+                    else {
+                        showNotifFailed()                        
+                    }
+                })
+                .catch((error) => {
+                    showNotifFailed()
+                    console.error('Error:', error);
+                });
+
+    }
+
+    function showNotifSuccess(){
+        document.getElementById("notif-success").style.display="block";
+    }
+
+    function showNotifFailed(){
+        document.getElementById("notif-failed").style.display="block";
+    }
+
+    function closeNotif(){
+        document.getElementById("notif-success").style.display="none";
+        document.getElementById("notif-failed").style.display="none";
+    }
+
     return (
+        <>
         <div className="view-class-list">
             <div className="teacher-sort-bar">
                 <input className="query-field" type="text" />
@@ -54,13 +119,30 @@ function ViewClassList() {
                                 <span className="action-item">Add Students</span><br />
                                 <span className="action-item">View Students</span><br />
                                 <span className="action-item">Add Teachers</span><br />
-                                <span className="action-item">View Teachers</span>
+                                <span className="action-item">View Teachers</span><br />
+                                <span className="action-item" onClick={e=>{disableClass(item.class_id)}}>Disable</span><br />
+                                <span className="action-item" onClick={e=>{deleteClass(item.class_id)}}>Delete</span>
                             </td>
                         </tr>
                     )
                 })}
             </table>
         </div>
+
+        <div className="notif-component-success"id="notif-success">
+            <label className="notif-component-text">Success!</label>
+            <br/>
+            <label className="notif-component-message">Operation done.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+
+        <div className="notif-component-failed" id="notif-failed">
+            <label className="notif-component-text">Failed!</label>
+            <br/>
+            <label className="notif-component-message">Error occured, try again.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+        </>
     )
 }
 

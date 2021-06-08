@@ -32,6 +32,7 @@ function ViewAssignmentListT() {
     }, [])
 
 
+
     //fetch subjects
     useEffect(() => {
 
@@ -64,7 +65,75 @@ function ViewAssignmentListT() {
         document.getElementById('student-list-assignment').style.display="none";
     }
 
+
+    function disableAssignment(id){
+        fetch(`http://localhost:3000/assignments/id/${id}/disable`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess()
+                    }
+
+                    else {
+                        showNotifFailed()                        
+                    }
+                })
+                .catch((error) => {
+                    showNotifFailed()
+                    console.error('Error:', error);
+                });
+
+    }
+
+    function deleteAssignment(id){
+        fetch(`http://localhost:3000/assignments/id/${id}/permanent_delete`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess()
+                    }
+
+                    else {
+                        showNotifFailed()                        
+                    }
+                })
+                .catch((error) => {
+                    showNotifFailed()
+                    console.error('Error:', error);
+                });
+
+    }
+
+    function showNotifSuccess(){
+        document.getElementById("notif-success").style.display="block";
+    }
+
+    function showNotifFailed(){
+        document.getElementById("notif-failed").style.display="block";
+    }
+
+    function closeNotif(){
+        document.getElementById("notif-success").style.display="none";
+        document.getElementById("notif-failed").style.display="none";
+    }
+
+
+
+
     return (
+        <>
         <div className="view-assignment-list-t">
             <div className="teacher-sort-bar">
                 <input className="query-field" type="text" />
@@ -92,7 +161,8 @@ function ViewAssignmentListT() {
                             <td>
                                 <Link to={"/view-assignment/" + item.assignment_id} className="action-item">View Assignment</Link><br />
                                 <Link to={"/view-assignment/" + item.assignment_id} className="action-item" onClick={e=>{e.preventDefault(); showStudentList(e)}}>View Students</Link><br />
-                                <span className="action-item">Disable</span>
+                                <span className="action-item" onClick={e=>{disableAssignment(item.assignment_id)}}>Disable</span>
+                                <span className="action-item" onClick={e=>{deleteAssignment(item.assignment_id)}}>Delete</span>
                             </td>
                         </tr>
                     )
@@ -122,6 +192,20 @@ function ViewAssignmentListT() {
             <div className="screen" id="screen" onClick={e=>{e.preventDefault();hideStudentList()}}></div>
         </div>
 
+        <div className="notif-component-success"id="notif-success">
+        <label className="notif-component-text">Success!</label>
+        <br/>
+        <label className="notif-component-message">Operation done.</label>
+        <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+    </div>
+
+    <div className="notif-component-failed" id="notif-failed">
+        <label className="notif-component-text">Failed!</label>
+        <br/>
+        <label className="notif-component-message">Error occured, try again.</label>
+        <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+    </div>
+        </>
     )
 }
 
