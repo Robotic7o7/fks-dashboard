@@ -180,3 +180,9 @@ table{
 ::-webkit-scrollbar-thumb:hover {
   background: #ccc;
 }
+
+.action-item{
+  color:#551A8B;
+  text-decoration: underline;
+  cursor: pointer;
+}

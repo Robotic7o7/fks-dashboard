@@ -19,6 +19,7 @@ function SideNav() {
             <Link to="/add-student" className="side-nav-item" onClick={e=>{makeActive(e)}}>add-student</Link>
             <Link to="/add-teacher" className="side-nav-item" onClick={e=>{makeActive(e)}}>add-teacher</Link>
             <Link to="/add-assignment" className="side-nav-item" onClick={e=>{makeActive(e)}}>add-assignment</Link>
+            <Link to="/add-branch" className="side-nav-item" onClick={e=>{makeActive(e)}}>add-branch</Link>
             <Link to="/view-assignment-list" className="side-nav-item" onClick={e=>{makeActive(e)}}>view-assignment-list</Link>
             <Link to="/view-assignment-list-t" className="side-nav-item" onClick={e=>{makeActive(e)}}>view-assignment-list-t</Link>
             <Link to="/view-admin-list" className="side-nav-item" onClick={e=>{makeActive(e)}}>view-admin-list</Link>
@@ -26,6 +27,11 @@ function SideNav() {
             <Link to="/view-teacher-list" className="side-nav-item" onClick={e=>{makeActive(e)}}>view-teacher-list</Link>
             <Link to="/view-class-list" className="side-nav-item" onClick={e=>{makeActive(e)}}>view-class-list</Link>
             <Link to="/view-subject-list" className="side-nav-item" onClick={e=>{makeActive(e)}}>view-subject-list</Link>
+            <Link to="/view-branch-list" className="side-nav-item" onClick={e=>{makeActive(e)}}>view-branch-list</Link>
+            <Link to="/gender-ratio-pie" className="side-nav-item" onClick={e=>{makeActive(e)}}>gender-ratio-pie</Link>
+            <Link to="/parent-professions-pie" className="side-nav-item" onClick={e=>{makeActive(e)}}>parent-professions-pie</Link>
+            <Link to="/birthday-calendar" className="side-nav-item" onClick={e=>{makeActive(e)}}>birthday-calendar</Link>
+            <Link to="/student-residence-map" className="side-nav-item" onClick={e=>{makeActive(e)}}>student-residence-map</Link>
         </div>
     );
 }

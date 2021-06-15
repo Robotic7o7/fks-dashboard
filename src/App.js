@@ -21,6 +21,12 @@ import SideNav from './components/side-nav/side-nav'
 import ViewAssignmentListT from './pages/view-assignment-list-t/view-assignment-list-t';
 import ViewClassList from './pages/view-class-list/view-class-list';
 import ViewSubjectList from './pages/view-subject-list/view-subjects-list';
+import GenderRatioPie from './components/gender-ratio-pie/gender-ratio-pie';
+import ParentProfessionsPie from './components/parent-professions-pie/parent-professions-pie';
+import BirthdayCalendar from './components/birthday-calendar/birthday-calendar';
+import StudentResidenceMap from './components/student-residence-map/student-residence-map';
+import AddBranch from './pages/add-branch/add-branch';
+import ViewBranchList from './pages/view-branch-list/view-branch-list';
 
 function App() {
   return (
@@ -82,6 +88,24 @@ function App() {
           </Route>
           <Route exact path="/view-subject-list">
             <ViewSubjectList />
+          </Route>
+          <Route exact path="/gender-ratio-pie">
+            <GenderRatioPie />
+          </Route>
+          <Route exact path="/parent-professions-pie">
+            <ParentProfessionsPie />
+          </Route>
+          <Route exact path="/birthday-calendar">
+            <BirthdayCalendar />
+          </Route>
+          <Route exact path="/student-residence-map">
+            <StudentResidenceMap />
+          </Route>
+          <Route exact path="/add-branch">
+            <AddBranch />
+          </Route>
+          <Route exact path="/view-branch-list">
+            <ViewBranchList />
           </Route>
         </Switch>
       </Router>

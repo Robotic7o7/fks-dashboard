@@ -6,3 +6,21 @@
     display: inline-block;
     padding:11px 20px;  
 }
+
+.subject-suggestions, .teacher-suggestions{
+    border:1px solid #666;
+    border-radius: 4px;
+    width:270px;
+    box-sizing: border-box;
+    display:none;
+}
+
+.subject-suggestions-item , .teacher-suggestions-item{
+    display: block;
+    padding:10px 20px;
+    cursor: pointer;
+}
+
+.subject-suggestions-item:hover, .teacher-suggestions-item:hover{
+    background-color: #eee;
+}

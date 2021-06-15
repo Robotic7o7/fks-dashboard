@@ -14,7 +14,7 @@ function AddSubject() {
         }
 
         if (validated == 1) {
-            fetch('http://localhost:3000/subjects/add', {
+            fetch('http://localhost:3000/subjects/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

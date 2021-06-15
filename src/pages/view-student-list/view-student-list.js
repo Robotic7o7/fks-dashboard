@@ -10,7 +10,7 @@ function ViewStudentList() {
 
     useEffect(() => {
 
-        fetch('http://localhost:3000/users/filter_users_by_role/5', {
+        fetch('http://localhost:3000/users/filter_users_by_role/5?pageSize=5&pageNo=1', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

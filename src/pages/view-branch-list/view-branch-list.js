@@ -1,16 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import "./view-subject-list.css"
+import "./view-branch-list.css"
 
 
-function ViewSubjectList() {
+function ViewBranchList() {
 
-    const [subjectList, setsubjectList] = useState([])
+    const [branchList, setBranchList] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
 
-    function getSubjects() {
-        fetch(`http://localhost:3000/subjects?q=`+searchQuery, {
+    function getBranches() {
+        fetch(`http://localhost:3000/branches?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ function ViewSubjectList() {
         })
             .then(res => res.json())
             .then(data => {
-                setsubjectList(data)
-                console.log(subjectList)
+                setBranchList(data)
+                console.log(branchList)
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -27,12 +27,12 @@ function ViewSubjectList() {
     }
 
     useEffect(() => {
-        getSubjects()
+        getBranches()
 
     }, [searchQuery])
 
-    function disableSubject(id) {
-        fetch(`http://localhost:3000/subjects/${id}/disable`, {
+    function disableBranch(id) {
+        fetch(`http://localhost:3000/branches/${id}/disable`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ function ViewSubjectList() {
                 if (data.message != "failed") {
                     console.log(data)
                     showNotifSuccess()
-                    getSubjects()
+                    getBranches()
                 }
 
                 else {
@@ -57,8 +57,8 @@ function ViewSubjectList() {
 
     }
 
-    function enableSubject(id) {
-        fetch(`http://localhost:3000/subjects/${id}/enable`, {
+    function enableBranch(id) {
+        fetch(`http://localhost:3000/branches/${id}/enable`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ function ViewSubjectList() {
                 if (data.message != "failed") {
                     console.log(data)
                     showNotifSuccess()
-                    getSubjects()
+                    getBranches()
                 }
 
                 else {
@@ -83,8 +83,8 @@ function ViewSubjectList() {
 
     }
 
-    function deleteSubject(id) {
-        fetch(`http://localhost:3000/subjects/${id}/permanent_delete`, {
+    function deleteBranch(id) {
+        fetch(`http://localhost:3000/branches/${id}/permanent_delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ function ViewSubjectList() {
                 if (data.message != "failed") {
                     console.log(data)
                     showNotifSuccess()
-                    getSubjects()
+                    getBranches()
                 }
 
                 else {
@@ -138,23 +138,25 @@ function ViewSubjectList() {
 
                 <table>
                     <tr>
-                        <th>Subject Name</th>
-                        <th>Subscribers</th>
+                        <th>Branch Code</th>
+                        <th>Branch Name</th>
+                        <th>Branch Address</th>
                         <th>Options</th>
                     </tr>
-                    {subjectList.map((item) => {
+                    {branchList.map((item) => {
                         return (
                             <tr>
-                                <td>{item.subject_name}</td>
-                                <td>3</td>
+                                <td>{item.branch_code}</td>
+                                <td>{item.branch_name}</td>
+                                <td>{item.address}</td>
                                 <td>
-                                    <Link to={"/view-student/" + item.user_id} className="action-item">Edit</Link><br />
+                                    <Link to={"/view-branch/" + item._id} className="action-item">Edit</Link><br />
                                     {item.disable ?
-                                        <span className="action-item" onClick={e => { enableSubject(item._id) }}>Enable</span>
+                                        <span className="action-item" onClick={e => { enableBranch(item._id) }}>Enable</span>
                                         :
-                                        <span className="action-item" onClick={e => { disableSubject(item._id) }}>Disable</span>}
+                                        <span className="action-item" onClick={e => { disableBranch(item._id) }}>Disable</span>}
                                     <br />
-                                    <span className="action-item action-item-red" onClick={e => { deleteSubject(item._id) }}>Permanent Delete</span>
+                                    <span className="action-item action-item-red" onClick={e => { deleteBranch(item._id) }}>Permanent Delete</span>
                                 </td>
                             </tr>
                         )
@@ -178,4 +180,4 @@ function ViewSubjectList() {
     )
 }
 
-export default ViewSubjectList;
+export default ViewBranchList;
