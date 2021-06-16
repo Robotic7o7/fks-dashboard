@@ -7,6 +7,7 @@ function AddStudent() {
 
     const [studentProfileImg, setStudentProfileImg] = useState('');
     const [admissionNumber, setAdmissionNumber] = useState('');
+    const [password, setPassword] = useState('');
     const [studentFullName, setStudentFullName] = useState('');
     const [studentDOB, setStudentDOB] = useState('');
     const [studentGender, setStudentGender] = useState('');
@@ -60,13 +61,14 @@ function AddStudent() {
             document.getElementById('student-COJ').style.border = "1px solid red";
         }
         if (validated == 1) {
-            fetch('http://localhost:3000/student/add', {
+            fetch('http://localhost:3000/users/new_student', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     admission_number:admissionNumber,
+                    password:password,
                     full_name:studentFullName,
                     date_of_birth:studentDOB,
                     gender:studentGender,
@@ -122,6 +124,10 @@ function AddStudent() {
             <div className="form-field-container">
                 <label className="form-field-label">Admission Number</label>
                 <input className="form-field" type="text" id="admission-number" value={admissionNumber} onChange={e=>{e.preventDefault(); setAdmissionNumber(e.target.value)}} />
+            </div>
+            <div className="form-field-container">
+                <label className="form-field-label">Password</label>
+                <input className="form-field" type="text" id="student-password" value={password} onChange={e=>{e.preventDefault(); setPassword(e.target.value)}} />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Fullname</label>

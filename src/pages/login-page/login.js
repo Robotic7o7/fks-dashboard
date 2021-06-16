@@ -3,14 +3,14 @@ import "./login.css"
 
 function LoginPage() {
 
-    const [userId, setUserId] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     function submitForm(){
         var validated = 1;
-        if (!userId) {
+        if (!email) {
             validated = 0;
-            document.getElementById('username').style.border = "1px solid red";
+            document.getElementById('email').style.border = "1px solid red";
         }
 
         if (!password) {
@@ -19,13 +19,13 @@ function LoginPage() {
         }
 
         if (validated == 1) {
-            fetch('http://localhost:3000/auth/login', {
+            fetch('http://localhost:3000/auth/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    user_name: userId,
+                    email: email,
                     password: password
                 }),
             })
@@ -34,6 +34,8 @@ function LoginPage() {
                     if (data.message != "failed") {
                         console.log(data)
                         localStorage.setItem('authToken', data.token)
+                        localStorage.setItem('user_type', data.userType);
+                        localStorage.setItem('user_name', data.username);
                     }
 
                     else {
@@ -51,8 +53,8 @@ function LoginPage() {
         <div className="form-container form-container-with-border">
             <span className="form-title">Login Here</span>
             <div className="form-field-container">
-                <label className="form-field-label" >User Id</label>
-                <input className="form-field" type="text" id="username" value={userId} onChange={e=>{e.preventDefault();setUserId(e.target.value)}}/>
+                <label className="form-field-label" >Email</label>
+                <input className="form-field" type="text" id="email" value={email} onChange={e=>{e.preventDefault();setEmail(e.target.value)}}/>
             </div>
             <div className="form-field-container">
                 <label className="form-field-label" >Password</label>

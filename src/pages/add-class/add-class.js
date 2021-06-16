@@ -102,7 +102,7 @@ function AddClass() {
         }
 
         if (validated == 1) {
-            fetch('http://localhost:3000/class/add', {
+            fetch('http://localhost:3000/classes/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

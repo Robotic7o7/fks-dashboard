@@ -27,6 +27,7 @@ import BirthdayCalendar from './components/birthday-calendar/birthday-calendar';
 import StudentResidenceMap from './components/student-residence-map/student-residence-map';
 import AddBranch from './pages/add-branch/add-branch';
 import ViewBranchList from './pages/view-branch-list/view-branch-list';
+import Calculator from './components/calculator/calculator';
 
 function App() {
   return (
@@ -106,6 +107,10 @@ function App() {
           </Route>
           <Route exact path="/view-branch-list">
             <ViewBranchList />
+          </Route>
+
+          <Route exact path="/calculator">
+            <Calculator />
           </Route>
         </Switch>
       </Router>

@@ -7,10 +7,10 @@ import "./view-class-list.css"
 function ViewClassList() {
 
     const [classList, setClassList] = useState([])
+    const [searchQuery, setSearchQuery] = useState('')
 
-    useEffect(() => {
-
-        fetch('http://localhost:3000/classes/', {
+    function getClasses(){
+        fetch(`http://localhost:3000/classes?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,11 +24,17 @@ function ViewClassList() {
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, [])
+    }
+
+    
+    useEffect(() => {
+        getClasses()
+
+    }, [searchQuery])
 
 
     function disableClass(id){
-        fetch(`http://localhost:3000/classes/id/${id}/disable`, {
+        fetch(`http://localhost:3000/classes/${id}/disable`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +59,7 @@ function ViewClassList() {
     }
 
     function deleteClass(id){
-        fetch(`http://localhost:3000/classes/id/${id}/permanent_delete`, {
+        fetch(`http://localhost:3000/classes/${id}/permanent_delete`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

@@ -45,13 +45,17 @@ function submitTeacher(){
     }
 
     if (validated == 1) {
-        fetch('http://localhost:3000/', {
+        fetch('http://localhost:3000/users/new_teacher', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                
+                name: fullname,
+                email: teacherEmail,
+                phone_number: teacherPhoneNumber,
+                branch: branch,
+                short_desc: teacherDesc,
             }),
         })
             .then(response => response.json())

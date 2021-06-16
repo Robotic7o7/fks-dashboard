@@ -7,10 +7,10 @@ import "./view-teacher-list.css"
 function ViewTeacherList() {
 
     const [teacherList, setTeacherList] = useState([])
+    const [searchQuery, setSearchQuery] = useState('')
 
-    useEffect(() => {
-
-        fetch('http://localhost:3000/users/filter_users_by_role/3', {
+    function getTeachers(){
+        fetch(`http://localhost:3000/users/teachers?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,10 +24,15 @@ function ViewTeacherList() {
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, [])
+    }
+
+    useEffect(() => {
+        getTeachers()
+
+    }, [searchQuery])
 
     function disableTeacher(id){
-        fetch(`http://localhost:3000/users/id/${id}/disable`, {
+        fetch(`http://localhost:3000/users/${id}/disable`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +57,7 @@ function ViewTeacherList() {
     }
 
     function deleteTeacher(id){
-        fetch(`http://localhost:3000/users/id/${id}/permanent_delete`, {
+        fetch(`http://localhost:3000/users/${id}/permanent_delete`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

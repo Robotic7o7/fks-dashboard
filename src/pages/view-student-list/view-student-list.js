@@ -7,10 +7,10 @@ import "./view-student-list.css"
 function ViewStudentList() {
 
     const [studentList, setStudentList] = useState([])
+    const [searchQuery, setSearchQuery] = useState('')
 
-    useEffect(() => {
-
-        fetch('http://localhost:3000/users/filter_users_by_role/5?pageSize=5&pageNo=1', {
+    function getStudents(){
+        fetch(`http://localhost:3000/users/students?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +24,12 @@ function ViewStudentList() {
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, [])
+    }
+
+    useEffect(() => {
+        getStudents()
+
+    }, [searchQuery])
 
     function disableStudent(id){
         fetch(`http://localhost:3000/users/id/${id}/disable`, {

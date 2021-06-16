@@ -9,11 +9,12 @@ function ViewAssignmentListT() {
 
     const [assignmentList, setAssignmentList] = useState([])
     const [subjectData, setSubjectData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuerySub, setSearchQuerySub]=useState('');
 
     //fetch assignments
-    useEffect(() => {
-
-        fetch('http://localhost:3000/assignments', {
+    function getAssignments(){
+        fetch(`http://localhost:3000/assignments?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,16 +28,18 @@ function ViewAssignmentListT() {
             .catch((error) => {
                 console.error('Error:', error);
             });
+    }
 
+    useEffect(() => {
+        getAssignments()
 
-    }, [])
+    }, [searchQuery])
 
 
 
     //fetch subjects
-    useEffect(() => {
-
-        fetch('http://localhost:3000/subjects', {
+    function getSubjects(){
+        fetch(`http://localhost:3000/subjects?q=`+searchQuerySub, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +54,12 @@ function ViewAssignmentListT() {
                 console.error('Error:', error);
             });
 
-    }, [])
+    }
+
+    useEffect(() => {
+        getAssignments()
+
+    }, [searchQuerySub])
 
     function showStudentList(){
         // document.getElementById('student-list-assignment').display="block";
@@ -67,7 +75,7 @@ function ViewAssignmentListT() {
 
 
     function disableAssignment(id){
-        fetch(`http://localhost:3000/assignments/id/${id}/disable`, {
+        fetch(`http://localhost:3000/assignments/${id}/disable`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +100,7 @@ function ViewAssignmentListT() {
     }
 
     function deleteAssignment(id){
-        fetch(`http://localhost:3000/assignments/id/${id}/permanent_delete`, {
+        fetch(`http://localhost:3000/assignments/${id}/permanent_delete`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
