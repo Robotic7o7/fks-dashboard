@@ -23,6 +23,7 @@ function Nav() {
             <div className="nav-left">
             </div>
             <div className="nav-right">
+                <Link to="/calculator" className="nav-item">Calculator</Link>
                 <span className="nav-item" onClick={e=>{e.preventDefault();logout()}}>Logout</span>
                 <span className="nav-item display-name">{displayName}</span>
                 <Link to="/account" className="nav-item"><svg className="user-icon" xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
