@@ -3,3 +3,21 @@
     border-bottom:1px solid #000;
     background-color: #eee;
 }
+
+.class-suggestions, .student-suggestions{
+    border:1px solid #666;
+    border-radius: 4px;
+    width:270px;
+    box-sizing: border-box;
+    display:none;
+}
+
+.class-suggestions-item, .student-suggestions-item{
+    display: block;
+    padding:10px 20px;
+    cursor: pointer;
+}
+
+.class-suggestions-item:hover, .student-suggestions-item:hover{
+    background-color: #eee;
+}

@@ -110,22 +110,22 @@ function ViewStudentList() {
             <table>
                 <tr>
                     <th>First Name</th>
-                    <th>Last Name</th>
                     <th>Email</th>
+                    <th>Class</th>
                     <th>Options</th>
                 </tr>
                 {studentList.map((item) => {
                     return (
                         <tr>
-                            <td>{item.first_name}</td>
-                            <td>{item.last_name}</td>
+                            <td>{item.name}</td>
                             <td>{item.email}</td>
+                            <td>{item.class}</td>
                             <td>
                                 <Link to={"/view-student/" + item.user_id} className="action-item">View Details</Link><br />
                                 <span className="action-item">View Parents</span><br />
-                                <span className="action-item">Update Password</span>
-                                <span className="action-item" onClick={e=>{disableStudent(item.user_id)}}>Disable</span>
-                                <span className="action-item" onClick={e=>{deleteStudent(item.user_id)}}>Delete</span>
+                                <span className="action-item">Update Password</span><br />
+                                <span className="action-item" onClick={e=>{disableStudent(item.user_id)}}>Disable</span><br />
+                                <span className="action-item" onClick={e=>{deleteStudent(item.user_id)}}>Permanent Delete</span>
                             </td>
                         </tr>
                     )

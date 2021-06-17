@@ -100,7 +100,7 @@ function ViewClassList() {
         <>
         <div className="view-class-list">
             <div className="teacher-sort-bar">
-                <input className="query-field" type="text" />
+            <input className="query-field" type="text" onChange={e=>{e.preventDefault();setSearchQuery(e.target.value)}}/>
                 <button className="query-button">Search</button>
                 {/* <div className="query-function-container">
            <button className="query-button">Sort Asscending</button>
@@ -112,7 +112,9 @@ function ViewClassList() {
             <table>
                 <tr>
                     <th>Class Name</th>
-                    <th>Subscribers</th>
+                    <th>Student Count</th>
+                    <th>Teachers</th>
+                    <th>Subjects</th>
                     <th>Options</th>
                 </tr>
                 {classList.map((item) => {
@@ -120,14 +122,28 @@ function ViewClassList() {
                         <tr>
                             <td>{item.class_name}</td>
                             <td>3</td>
+                            <td>{item.teachers.map((teacher)=>{
+                                return (
+                                    <>
+                                    <span>{teacher.name}</span><br />
+                                    </>
+                                )
+                            })}</td>
+                            <td>{item.subjects.map((subject)=>{
+                                return (
+                                    <>
+                                    <span>{subject.subject_name}</span><br />
+                                    </>
+                                )
+                            })}</td>
                             <td>
                                 <Link to={"/view-student/" + item.user_id} className="action-item">Edit</Link><br />
                                 <span className="action-item">Add Students</span><br />
-                                <span className="action-item">View Students</span><br />
+                                <span className="action-item">Add Subjects</span><br />
                                 <span className="action-item">Add Teachers</span><br />
-                                <span className="action-item">View Teachers</span><br />
-                                <span className="action-item" onClick={e=>{disableClass(item.class_id)}}>Disable</span><br />
-                                <span className="action-item" onClick={e=>{deleteClass(item.class_id)}}>Delete</span>
+                                <span className="action-item">View Students</span><br />
+                                <span className="action-item" onClick={e=>{disableClass(item._id)}}>Disable</span><br />
+                                <span className="action-item" onClick={e=>{deleteClass(item._id)}}>Delete</span>
                             </td>
                         </tr>
                     )
@@ -135,7 +151,7 @@ function ViewClassList() {
             </table>
         </div>
 
-        <div className="notif-component-success"id="notif-success">
+         <div className="notif-component-success"id="notif-success">
             <label className="notif-component-text">Success!</label>
             <br/>
             <label className="notif-component-message">Operation done.</label>

@@ -4,13 +4,17 @@ import "./add-class.css"
 function AddClass() {
 
     const [teacherListLocal, setTeacherListLocal] = useState([])
+    const [teacherListId, setTeacherListId] = useState([])
     const [teacherListFetched, setTeacherListFetched] = useState([])
     const [subjectListLocal, setSubjectListLocal] = useState([])
+    const [subjectListId, setSubjectListId] = useState([])
     const [subjectListFetched, setSubjectListFetched] = useState([])
+
     const [className, setClassName] = useState('')
 
-    function addTeacher(value){
-        setTeacherListLocal([...teacherListLocal, value])
+    function addTeacher(e){
+        setTeacherListLocal([...teacherListLocal, e.target.innerText])
+        setTeacherListId([...teacherListId, e.target.getAttribute('data-id')])
     }
 
     function deleteTeacher(e){
@@ -19,8 +23,9 @@ function AddClass() {
         setTeacherListLocal(teacherListLocal.filter(item => item!= e.target.getAttribute('data-name')))
     }
 
-    function addSubject(value){
-        setSubjectListLocal([...subjectListLocal, value])
+    function addSubject(e){
+        setSubjectListLocal([...subjectListLocal, e.target.innerText])
+        setSubjectListId([...subjectListId, e.target.getAttribute('data-id')])
     }
 
     function deleteSubject(e){
@@ -40,6 +45,7 @@ function AddClass() {
     },[teacherListLocal, subjectListLocal])
 
     useEffect(()=>{
+        console.log(teacherListFetched)
         if(document.getElementById('subjects-list').value){
             document.getElementsByClassName('subject-suggestions')[0].style.display="block"
         }
@@ -73,7 +79,7 @@ function AddClass() {
 
 
     function getTeachers(searchQuery) {
-        fetch(`http://localhost:3000/subjects?q=`+searchQuery, {
+        fetch(`http://localhost:3000/users/teachers?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -109,8 +115,8 @@ function AddClass() {
                 },
                 body: JSON.stringify({
                    class_name: className,
-                   subjects: subjectListLocal,
-                   teachers: teacherListLocal
+                   subjects: subjectListId,
+                   teachers: teacherListId
                 }),
             })
                 .then(response => response.json())
@@ -151,14 +157,14 @@ function AddClass() {
             <span className="form-title">Create New Class</span>
             <div className="form-field-container">
                 <label className="form-field-label">Class Name</label>
-                <input className="form-field" type="text" />
+                <input className="form-field" type="text" value={className} onChange={e=>{e.preventDefault();setClassName(e.target.value)}} />
             </div>
             <div className="form-field-container">
                 <label className="form-field-label">Teachers</label>
-                <input className="form-field form-field-2" type="text" id="teachers-list" />
+                <input className="form-field form-field-2" type="text" id="teachers-list" onChange={e=>{e.preventDefault();getTeachers(e.target.value)}} />
                 <div className="teacher-suggestions">
-                    {subjectListFetched.map((item)=>{
-                      return <span className="teacher-suggestions-item" data-id={item._id} onClick={e=> {addTeacher(e.target.innerText);hideTeacherSuggestions()}}>{item.subject_name}</span>
+                    {teacherListFetched.map((item)=>{
+                      return <span className="teacher-suggestions-item" data-id={item._id} onClick={e=> {addTeacher(e);hideTeacherSuggestions()}}>{item.name}</span>
                     })}
                 </div>
                 <div className="bubble-list">
@@ -172,7 +178,7 @@ function AddClass() {
                 <input className="form-field form-field-2" type="text"id="subjects-list" onChange={e=>{e.preventDefault();getSubjects(e.target.value)}} />
                 <div className="subject-suggestions">
                     {subjectListFetched.map((item)=>{
-                      return <span className="subject-suggestions-item" data-id={item._id} onClick={e=> {addSubject(e.target.innerText);hideSubjectSuggestions()}}>{item.subject_name}</span>
+                      return <span className="subject-suggestions-item" data-id={item._id} onClick={e=> {addSubject(e);hideSubjectSuggestions()}}>{item.subject_name}</span>
                     })}
                 </div>
                 <div className="bubble-list">

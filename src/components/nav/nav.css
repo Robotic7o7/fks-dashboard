@@ -18,8 +18,10 @@
 .nav-item{
     font-family: 'comicSans', sans-serif;
     display: inline-block;
-    margin:15px 0px 0 30px;
+    margin:5px 0 0 30px;  
     cursor: pointer;
+    color:#551A8B;
+    text-decoration: underline;
 }
 
 .nav-logo{
@@ -28,6 +30,8 @@
 }
 
 .user-icon{
+    position: relative;
+    top:12px;
     width:25px;
     fill:#606060;
 }
@@ -46,8 +50,7 @@
     top:-5px;
 }
 
-.nav-creds{
+.display-name{
     color:#000;
-    position: relative;
-    top:-12px;
+    text-decoration: none;
 }
