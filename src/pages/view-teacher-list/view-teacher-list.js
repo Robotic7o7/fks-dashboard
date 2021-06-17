@@ -8,6 +8,8 @@ function ViewTeacherList() {
 
     const [teacherList, setTeacherList] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
+    const [updatePwdID, setUpdatePwdId] = useState('')
+    const [updatedPass, setUpdatedPass] = useState('')
 
     function getTeachers(){
         fetch(`http://localhost:3000/users/teachers?q=`+searchQuery, {
@@ -81,6 +83,14 @@ function ViewTeacherList() {
 
     }
 
+    function showUpdatePwd(){
+        document.getElementById("pwd-update").style.display="block";
+    }
+
+    function hideUpdatePwd(){
+        document.getElementById("pwd-update").style.display="none";
+    }
+
     function showNotifSuccess(){
         document.getElementById("notif-success").style.display="block";
     }
@@ -92,6 +102,43 @@ function ViewTeacherList() {
     function closeNotif(){
         document.getElementById("notif-success").style.display="none";
         document.getElementById("notif-failed").style.display="none";
+    }
+
+    function updatePassword(){
+        var validated = 1;
+        if (!updatedPass) {
+            validated = 0;
+            document.getElementById('updated-pass').style.border = "1px solid red";
+        }
+
+        if (validated == 1) {
+            fetch(`http://localhost:3000/users/${updatePwdID}/update`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    password: updatedPass
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess();
+                    }
+
+                    else {
+                        showNotifFailed();
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    showNotifFailed();
+                });
+
+        }
+        hideUpdatePwd();
     }
 
     return (
@@ -108,21 +155,19 @@ function ViewTeacherList() {
             </div>
             <table>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Options</th>
                 </tr>
                 {teacherList.map((item) => {
                     return (
                         <tr>
-                            <td>{item.first_name}</td>
-                            <td>{item.last_name}</td>
+                            <td>{item.name}</td>
                             <td>{item.email}</td>
                             <td>
                                 <Link to={"/view-teacher/" + item.user_id} className="action-item">View Details</Link><br />
                                 <span className="action-item">Assign Class</span><br />
-                                <span className="action-item">Update Password</span><br/>
+                                <span className="action-item" onClick={e=>{e.preventDefault();showUpdatePwd();setUpdatePwdId(item._id)}}>Update Password</span><br/>
                                 <span className="action-item" onClick={e=>{disableTeacher(item.user_id)}}>Disable</span>&nbsp;
                                 <span className="action-item" onClick={e=>{deleteTeacher(item.user_id)}}>Delete</span>
                             </td>
@@ -145,6 +190,16 @@ function ViewTeacherList() {
             <label className="notif-component-message">Error occured, try again.</label>
             <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
         </div>
+
+        
+    <div className="update-password" id="pwd-update">
+    <span className="form-title">Update Password</span>
+                <div className="form-field-container">
+                <label className="form-field-label">New Password</label>
+                <input className="form-field" id="updated-pass" type="text" onChange={e=>{e.preventDefault();setUpdatedPass(e.target.value)}} />
+                </div>
+                <button className="submit-button" onClick={updatePassword}>SUBMIT</button>
+    </div>
         </>
     )
 }

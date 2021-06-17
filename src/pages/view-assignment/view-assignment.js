@@ -10,8 +10,9 @@ function ViewAssignment(props) {
     const [assignment, setAssignment] = useState('')
 
     useEffect(() => {
+        console.log(id)
 
-        fetch('http://localhost:3000/assignments/id/' + id, {
+        fetch(`http://localhost:3000/assignments/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,6 +21,7 @@ function ViewAssignment(props) {
             .then(res => res.json())
             .then(data => {
                 setAssignment(data)
+                console.log(data)
                 console.log(assignment)
             })
             .catch((error) => {
@@ -46,35 +48,34 @@ function ViewAssignment(props) {
                 </div>
 
                 <div className="assignment-details">
-                    <span className="assignment-details-name">{assignment[0].assignment_name}</span>
-                    {JSON.parse(assignment[0].assignment_value).map((item) => {
-                        if (item.question_type == "mcq") {
+                    <span className="assignment-details-name">{assignment.assignment_name}</span>
+                    {assignment.questions.map((item) => {
+                        if (item.question_type == "MCQ") {
                             return (
                                 <div className="question">
-                                    <span className="question-value">{i + ") " + item.question_value}</span>
-                                    {item.options.map((option) => {
-                                        return (
-                                            <span className="question-option">{j + ") " + option.value}<span className="hidden">{j++}</span></span>
-                                        )
-                                    })}
-                                    <span className="hidden">{i++}{j = 1}</span>
+                                    <span className="question-value">{i + ") " + item.question_text}</span>
+                                    <span className="question-option">1) {item.option1}</span>
+                                    <span className="question-option">2) {item.option2}</span>
+                                    <span className="question-option">3) {item.option3}</span>
+                                    <span className="question-option">4) {item.option4}</span>
+                                    {/* <span className="hidden">{i++}{j = 1}</span> */}
                                 </div>
                             )
 
                         }
-                        else if (item.question_type == "la") {
+                        else if (item.question_type == "LA") {
                             return (
                                 <div className="question">
-                                    <span className="question-value">{i + ") " + item.question_value}</span>
+                                    <span className="question-value">{i + ") " + item.question_text}</span>
                                     <span className="hidden">{i++}</span>
                                 </div>
                             )
 
                         }
-                        else if (item.question_type == "sa") {
+                        else if (item.question_type == "SA") {
                             return (
                                 <div className="question">
-                                    <span className="question-value">{i + ") " + item.question_value}</span>
+                                    <span className="question-value">{i + ") " + item.question_text}</span>
                                     <span className="hidden">{i++}</span>
                                 </div>
                             )

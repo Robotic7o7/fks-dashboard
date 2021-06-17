@@ -1,3 +1,18 @@
 .view-student-list{
     margin-top:160px;
 }
+
+.update-password{
+    display:none;
+    position:absolute;
+    top:40%;
+    left:40%;
+    height:250px;
+    width:400px;
+    padding:30px;
+    background-color:#fff;
+    border:1px solid #000;
+    box-sizing:border-box;
+    border-radius:8px;
+    z-index:10
+}
