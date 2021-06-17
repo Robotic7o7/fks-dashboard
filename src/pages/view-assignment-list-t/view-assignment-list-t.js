@@ -57,7 +57,7 @@ function ViewAssignmentListT() {
     }
 
     useEffect(() => {
-        getAssignments()
+        getSubjects()
 
     }, [searchQuerySub])
 

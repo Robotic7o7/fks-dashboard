@@ -9,11 +9,12 @@ function ViewAssignmentList() {
 
     const [assignmentList, setAssignmentList] = useState([])
     const [subjectData, setSubjectData] = useState([]);
+    const [searchQuery, setSearchQuery]=useState('');
+    const [searchQuerySub, setSearchQuerySub]=useState('');
 
     //fetch assignments
-    useEffect(() => {
-
-        fetch('http://localhost:3000/assignments', {
+    function getAssignments(){
+        fetch(`http://localhost:3000/assignments?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,15 +28,18 @@ function ViewAssignmentList() {
             .catch((error) => {
                 console.error('Error:', error);
             });
+    }
 
+    useEffect(() => {
+        getAssignments()
 
-    }, [])
+    }, [searchQuery])
+
 
 
     //fetch subjects
-    useEffect(() => {
-
-        fetch('http://localhost:3000/subjects', {
+    function getSubjects(){
+        fetch(`http://localhost:3000/subjects?q=`+searchQuerySub, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +54,12 @@ function ViewAssignmentList() {
                 console.error('Error:', error);
             });
 
-    }, [])
+    }
+
+    useEffect(() => {
+        getSubjects()
+
+    }, [searchQuerySub])
 
     //select subject
 
@@ -82,9 +91,60 @@ function ViewAssignmentList() {
         e.preventDefault();
     }
 
+    function displayUpload(){
+        document.getElementById("assignment-upload").style.display="grid";
+    }
+
+    function hideUpload(){
+        document.getElementById("assignment-upload").style.display="none";
+    }
+
+
+    function submitAssignment(){
+        fetch('http://localhost:3000/upload/:id/upload', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message != "failed") {
+                    console.log(data)
+                    showNotifSuccess()
+                }
+
+                else {
+                    showNotifFailed()
+                }
+            })
+            .catch((error) => {
+                showNotifFailed()
+                console.error('Error:', error);
+            });
+
+    }
+
+    function showNotifSuccess(){
+        document.getElementById("notif-success").style.display="block";
+    }
+
+    function showNotifFailed(){
+        document.getElementById("notif-failed").style.display="block";
+    }
+
+    function closeNotif(){
+        document.getElementById("notif-success").style.display="none";
+        document.getElementById("notif-failed").style.display="none";
+    }
+
 
 
     return (
+        <>
         <div className="view-assignment-list">
             <div className="subjects-bar">
                 <div className="subjects-container">
@@ -105,10 +165,38 @@ function ViewAssignmentList() {
                     <div className="assignment-list">
                         <span className="assignment-due">Due on 7 March 2021</span>
                         <Link to={"/view-assignment/" + item.assignment_id} className="assignment-name">{item.assignment_name}</Link>
+                        <button onClick={displayUpload}>Submit Assignment</button>
                     </div>
                 )
             })}
         </div >
+         <div className="upload-assignment-popup" id="assignment-upload">
+             <div className="form-upload-container">
+             <span className="form-title">Upload Assignment</span>
+                <div className="form-field-container">
+                <label className="form-field-label">Upload File</label>
+                <input className="form-field full-width-field" type="file" />
+                </div>
+                <button className="submit-button" onClick={submitAssignment} >SUBMIT</button>
+                <button className="submit-button button-secondary" onClick={hideUpload}>CLOSE</button>
+             </div>
+         </div>
+
+
+         <div className="notif-component-success"id="notif-success">
+            <label className="notif-component-text">Success!</label>
+            <br/>
+            <label className="notif-component-message">Assignment Submitted.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+
+        <div className="notif-component-failed" id="notif-failed">
+            <label className="notif-component-text">Failed!</label>
+            <br/>
+            <label className="notif-component-message">Error occured, try again.</label>
+            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+        </div>
+        </>
     )
 }
 
