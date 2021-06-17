@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./login.css"
+import { useHistory, Redirect } from 'react-router-dom';
 
 function LoginPage() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const history = useHistory()
 
     function submitForm(){
         var validated = 1;
@@ -36,6 +39,8 @@ function LoginPage() {
                         localStorage.setItem('authToken', data.token)
                         localStorage.setItem('user_type', data.userType);
                         localStorage.setItem('user_name', data.username);
+                        localStorage.setItem('user_id', data.user_id);
+                        history.push("/home");
                     }
 
                     else {

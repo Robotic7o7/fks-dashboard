@@ -33,83 +33,132 @@ function App() {
   return (
     <div>
       <Router>
-        <Nav />
-        <SideNav />
         <Switch>
-          <Route exact path="/login">
+          <Route exact path="/">
             <LoginPage />
           </Route>
+          <Route exact path="/home">
+          <Nav />
+          <SideNav />
+          </Route>
           <Route exact path="/add-subject">
-            <AddSubject />
+          <Nav />
+          <SideNav />
+          <AddSubject />
           </Route>
           <Route exact path="/add-class">
-            <AddClass />
+          <Nav />
+          <SideNav />
+          <AddClass />
           </Route>
           <Route exact path="/add-student">
-            <AddStudent />
+          <Nav />
+          <SideNav />
+          <AddStudent />
           </Route>
           <Route exact path="/add-teacher">
+            <Nav />
+            <SideNav />
             <AddTeacher />
           </Route>
           <Route exact path="/add-assignment">
+            <Nav />
+            <SideNav />
             <AddAssignment />
           </Route>
           <Route exact path="/view-assignment-list">
+            <Nav />
+            <SideNav />
             <ViewAssignmentList />
           </Route>
           <Route exact path="/view-assignment/:id">
+            <Nav />
+            <SideNav />
             <ViewAssignment />
           </Route>
           <Route exact path="/view-admin-list">
+            <Nav />
+            <SideNav />
             <ViewAdminList />
           </Route>
           <Route exact path="/view-admin/:id">
+            <Nav />
+            <SideNav />
             <ViewAdmin />
           </Route>
           <Route exact path="/view-parent/:id">
+            <Nav />
+            <SideNav />
             <ViewParent />
           </Route>
           <Route exact path="/view-student-list">
+            <Nav />
+            <SideNav />
             <ViewStudentList />
           </Route>
           <Route exact path="/view-student/:id">
+            <Nav />
+            <SideNav />
             <ViewStudent />
           </Route>
           <Route exact path="/view-teacher-list">
+            <Nav />
+            <SideNav />
             <ViewTeacherList />
           </Route>
           <Route exact path="/view-teacher/:id">
+            <Nav />
+            <SideNav />
             <ViewTeacher />
           </Route>
           <Route exact path="/view-assignment-list-t">
+            <Nav />
+            <SideNav />
             <ViewAssignmentListT />
           </Route>
           <Route exact path="/view-class-list">
+            <Nav />
+            <SideNav />
             <ViewClassList />
           </Route>
           <Route exact path="/view-subject-list">
+            <Nav />
+            <SideNav />
             <ViewSubjectList />
           </Route>
           <Route exact path="/gender-ratio-pie">
+           <Nav />
+            <SideNav />
             <GenderRatioPie />
           </Route>
           <Route exact path="/parent-professions-pie">
+            <Nav />
+            <SideNav />
             <ParentProfessionsPie />
           </Route>
           <Route exact path="/birthday-calendar">
+            <Nav />
+            <SideNav />
             <BirthdayCalendar />
           </Route>
           <Route exact path="/student-residence-map">
+            <Nav />
+            <SideNav />
             <StudentResidenceMap />
           </Route>
           <Route exact path="/add-branch">
+            <Nav />
+            <SideNav />
             <AddBranch />
           </Route>
           <Route exact path="/view-branch-list">
+            <Nav />
+            <SideNav />
             <ViewBranchList />
           </Route>
-
           <Route exact path="/calculator">
+            <Nav />
+            <SideNav />
             <Calculator />
           </Route>
         </Switch>
