@@ -12,7 +12,7 @@ function ViewAssignment(props) {
     useEffect(() => {
         console.log(id)
 
-        fetch(`http://localhost:3000/assignments/${id}`, {
+        fetch(`http://165.22.210.235:4000/assignments/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

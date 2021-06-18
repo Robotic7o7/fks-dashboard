@@ -24,7 +24,7 @@ function AddBranch() {
             document.getElementById('branch-address').style.border = "1px solid red";
         }
         if (validated == 1) {
-            fetch('http://localhost:3000/branches/new', {
+            fetch('http://165.22.210.235:4000/branches/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

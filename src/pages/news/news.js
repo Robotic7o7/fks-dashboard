@@ -12,7 +12,7 @@ function News() {
     // const [updatedPass, setUpdatedPass] = useState('')
 
     function getPosts(){
-        fetch(`http://localhost:3000/posts`, {
+        fetch(`http://165.22.210.235:4000/posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ function News() {
     //     }
 
     //     if (validated == 1) {
-    //         fetch(`http://localhost:3000/users/${updatePwdID}/update`, {
+    //         fetch(`http://165.22.210.235:4000/users/${updatePwdID}/update`, {
     //             method: 'PATCH',
     //             headers: {
     //                 'Content-Type': 'application/json',

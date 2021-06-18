@@ -45,7 +45,7 @@ function submitTeacher(){
     }
 
     if (validated == 1) {
-        fetch('http://localhost:3000/users/new_teacher', {
+        fetch('http://165.22.210.235:4000/users/new_teacher', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

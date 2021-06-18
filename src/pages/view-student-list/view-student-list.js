@@ -12,7 +12,7 @@ function ViewStudentList() {
     const [updatedPass, setUpdatedPass] = useState('')
 
     function getStudents(){
-        fetch(`http://localhost:3000/users/students?q=`+searchQuery, {
+        fetch(`http://165.22.210.235:4000/users/students?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function ViewStudentList() {
     }, [searchQuery])
 
     function disableStudent(id){
-        fetch(`http://localhost:3000/users/id/${id}/disable`, {
+        fetch(`http://165.22.210.235:4000/users/id/${id}/disable`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function ViewStudentList() {
     }
 
     function deleteStudent(id){
-        fetch(`http://localhost:3000/users/id/${id}/permanent_delete`, {
+        fetch(`http://165.22.210.235:4000/users/id/${id}/permanent_delete`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ function ViewStudentList() {
         }
 
         if (validated == 1) {
-            fetch(`http://localhost:3000/users/${updatePwdID}/update`, {
+            fetch(`http://165.22.210.235:4000/users/${updatePwdID}/update`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

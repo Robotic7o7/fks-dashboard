@@ -61,7 +61,7 @@ function AddStudent() {
             document.getElementById('student-COJ').style.border = "1px solid red";
         }
         if (validated == 1) {
-            fetch('http://localhost:3000/users/new_student', {
+            fetch('http://165.22.210.235:4000/users/new_student', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

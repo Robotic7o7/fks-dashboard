@@ -16,7 +16,7 @@ function AddNews() {
         }
 
         if (validated == 1) {
-            fetch('http://localhost:3000/posts/new', {
+            fetch('http://165.22.210.235:4000/posts/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

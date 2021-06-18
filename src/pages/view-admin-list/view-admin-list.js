@@ -12,7 +12,7 @@ function ViewAdminList() {
     const [updatedPass, setUpdatedPass] = useState('')
 
     function getAdmins(){
-        fetch(`http://localhost:3000/users/admins?q=`+ searchQuery, {
+        fetch(`http://165.22.210.235:4000/users/admins?q=`+ searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ function ViewAdminList() {
         }
 
         if (validated == 1) {
-            fetch(`http://localhost:3000/users/${updatePwdID}/update`, {
+            fetch(`http://165.22.210.235:4000/users/${updatePwdID}/update`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

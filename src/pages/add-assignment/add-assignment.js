@@ -94,7 +94,7 @@ function AddAssignment() {
     }
 
     function getSubjects(searchQuery) {
-        fetch(`http://localhost:3000/subjects?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:4000/subjects?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function AddAssignment() {
     }
 
     function getStudents(searchQuery) {
-        fetch(`http://localhost:3000/users/students?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:4000/users/students?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ function AddAssignment() {
     }
 
     function getClasses(searchQuery) {
-        fetch(`http://localhost:3000/classes?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:4000/classes?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -228,7 +228,7 @@ function AddAssignment() {
         }
 
         if (validated == 1) {
-            fetch('http://localhost:3000/assignments/new', {
+            fetch('http://165.22.210.235:4000/assignments/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
