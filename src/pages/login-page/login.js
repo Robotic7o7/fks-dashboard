@@ -55,7 +55,12 @@ function LoginPage() {
     }
 
     return (
-        <div className="form-container form-container-with-border">
+       <div className="login-page">
+           <div className="login-page-left">
+               <img src="/Slide 3.jpg" className="login-image"/>
+           </div>
+           <div className="login-page-right">
+           <div className="login-form-container">
             <span className="form-title">Login Here</span>
             <div className="form-field-container">
                 <label className="form-field-label" >Email</label>
@@ -67,6 +72,8 @@ function LoginPage() {
             </div>
             <button className="submit-button" onClick={e=>{e.preventDefault();submitForm()}}>SUBMIT</button>
         </div>
+           </div>
+       </div>
     )
 }
 
