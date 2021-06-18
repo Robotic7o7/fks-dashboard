@@ -1,0 +1,44 @@
+.news{
+    margin:100px 0 0 500px;
+}
+
+.news-title{
+    font-size:24px;
+    font-family: "ComicSans", sans-serif;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.news-item{
+    border:1px solid #ddd;
+    width:600px;
+    border-radius: 10px;
+    padding:10px 20px;
+    margin:0 0 40px 0;
+}
+
+.news-item-user-img{
+    fill:#ccc;
+    display: inline-block;
+}
+
+.news-item-user-name{
+    display: inline-block;
+    vertical-align: top;
+    font-family: "ComicSans",sans-serif;
+    margin-left: 10px;
+    position: relative;
+    top:7px;
+}
+
+.news-item-text{
+    margin:10px 0 0 0;
+    font-family: "ComicSans", sans-serif;
+}
+
+.news-item-time{
+    margin:10px 0 0 0;
+    font-family: "ComicSans", sans-serif;
+    font-size: 14px;
+    color:#666;
+}

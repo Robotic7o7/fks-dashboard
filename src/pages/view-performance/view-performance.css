@@ -1,0 +1,15 @@
+.view-performance{
+    margin:100px 0 0 400px;
+}
+
+.performance-table-container{
+    margin-bottom: 50px;
+}
+.performance-table-heading{
+    margin:0 0 10px 125px;
+    display: block;
+    font-family: "ComicSans", sans-serif;
+}
+.performance-table{
+    margin:0;
+}

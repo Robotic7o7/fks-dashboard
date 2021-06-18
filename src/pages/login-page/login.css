@@ -6,31 +6,11 @@
     height:100vh;
 }
 
-.login-page-left{
-    width:60%;
-    height:100%;
-}
-
-.login-image{
-    height:100%;
-    width:auto;
-}
-
-
-.login-page-right{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:40%;
-    height:100%;
-    background-color:#fff;
-}
-
 .login-form-container{
-    height:auto;
+    height:300px;
     width:280px;
-    background-color:#fff;
     padding:30px;
     border-radius:10px;
-    border:1px solid #000;
+    border:1px solid #ccc;
+    margin:150px auto 0 auto;
 }

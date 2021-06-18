@@ -169,8 +169,8 @@ function ViewAssignmentListT() {
                             <td>
                                 <Link to={"/view-assignment/" + item.assignment_id} className="action-item">View Assignment</Link><br />
                                 <Link to={"/view-assignment/" + item.assignment_id} className="action-item" onClick={e=>{e.preventDefault(); showStudentList(e)}}>View Students</Link><br />
-                                <span className="action-item" onClick={e=>{disableAssignment(item.assignment_id)}}>Disable</span>
-                                <span className="action-item" onClick={e=>{deleteAssignment(item.assignment_id)}}>Delete</span>
+                                <span className="action-item" onClick={e=>{disableAssignment(item.assignment_id)}}>Disable</span><br />
+                                <span className="action-item" onClick={e=>{deleteAssignment(item.assignment_id)}}>Permanent Delete</span>
                             </td>
                         </tr>
                     )

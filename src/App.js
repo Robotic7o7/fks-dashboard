@@ -28,6 +28,9 @@ import StudentResidenceMap from './components/student-residence-map/student-resi
 import AddBranch from './pages/add-branch/add-branch';
 import ViewBranchList from './pages/view-branch-list/view-branch-list';
 import Calculator from './components/calculator/calculator';
+import News from './pages/news/news';
+import AddNews from './pages/add-news/add-news';
+import ViewPerformance from './pages/view-performance/view-performance';
 
 function App() {
   return (
@@ -160,6 +163,21 @@ function App() {
             <Nav />
             <SideNav />
             <Calculator />
+          </Route>
+          <Route exact path="/news">
+            <Nav />
+            <SideNav />
+            <News />
+          </Route>
+          <Route exact path="/add-news">
+            <Nav />
+            <SideNav />
+            <AddNews />
+          </Route>
+          <Route exact path="/view-performance">
+            <Nav />
+            <SideNav />
+            <ViewPerformance />
           </Route>
         </Switch>
       </Router>

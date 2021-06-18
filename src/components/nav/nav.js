@@ -18,11 +18,30 @@ function Nav() {
         setDisplayName(localStorage.getItem("user_name"));
     }, [])
 
+
+    function toggleNotifications(){
+        if(document.getElementsByClassName('notifications-container')[0].style.display=="none")
+        document.getElementsByClassName('notifications-container')[0].style.display="block"
+
+        else
+        document.getElementsByClassName('notifications-container')[0].style.display="none"
+    }
+
     return (
         <div className="nav">
             <div className="nav-left">
             </div>
             <div className="nav-right">
+                <span className="nav-item">Dictionary</span>
+                <span className="nav-item">Calculator</span>
+                <span className="nav-item" onClick={e=>{e.preventDefault();toggleNotifications(e)}}>Updates
+                
+                <div className="notifications-container">
+                    <span className="notifications-item" onClick={e=>{e.stopPropagation();}}>Test</span>
+                    <span className="notifications-item" onClick={e=>{e.stopPropagation();}}>Hello</span>
+                    <span className="notifications-item" onClick={e=>{e.stopPropagation();}}>This is a notification</span>
+                </div>
+                </span>
                 <span className="nav-item" onClick={e=>{e.preventDefault();logout()}}>Logout</span>
                 <span className="nav-item display-name">{displayName}</span>
                 <Link to="/account" className="nav-item"><svg className="user-icon" xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">

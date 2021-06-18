@@ -40,7 +40,7 @@ function LoginPage() {
                         localStorage.setItem('user_type', data.userType);
                         localStorage.setItem('user_name', data.username);
                         localStorage.setItem('user_id', data.user_id);
-                        history.push("/home");
+                        history.push("/news");
                     }
 
                     else {
@@ -56,10 +56,6 @@ function LoginPage() {
 
     return (
        <div className="login-page">
-           <div className="login-page-left">
-               <img src="/Slide 3.jpg" className="login-image"/>
-           </div>
-           <div className="login-page-right">
            <div className="login-form-container">
             <span className="form-title">Login Here</span>
             <div className="form-field-container">
@@ -73,7 +69,6 @@ function LoginPage() {
             <button className="submit-button" onClick={e=>{e.preventDefault();submitForm()}}>SUBMIT</button>
         </div>
            </div>
-       </div>
     )
 }
 
