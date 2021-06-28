@@ -16,3 +16,11 @@
     border-radius:8px;
     z-index:10
 }
+
+.update-pass-button-container{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content: center;
+    width:100%;
+}

@@ -198,10 +198,16 @@ function ViewStudentList() {
     <span className="form-title">Update Password</span>
                 <div className="form-field-container">
                 <label className="form-field-label">New Password</label>
-                <input className="form-field" id="updated-pass" type="text" onChange={e=>{e.preventDefault();setUpdatedPass(e.target.value)}} />
+                <input className="form-field full-width-field" id="updated-pass" type="text" onChange={e=>{e.preventDefault();setUpdatedPass(e.target.value)}} />
                 </div>
+                <div className="update-pass-button-container">
                 <button className="submit-button" onClick={updatePassword}>SUBMIT</button>
+                &nbsp; &nbsp; &nbsp;
+                <button className="submit-button" onClick={hideUpdatePwd}>CLOSE</button>
+                </div>
     </div>
+
+    
     </>
     )
 }

@@ -165,11 +165,11 @@ function ViewTeacherList() {
                             <td>{item.name}</td>
                             <td>{item.email}</td>
                             <td>
-                                <Link to={"/view-teacher/" + item.user_id} className="action-item">View Details</Link><br />
+                                <Link to={"/view-teacher/" + item._id} className="action-item">View Details</Link><br />
                                 <span className="action-item">Assign Class</span><br />
                                 <span className="action-item" onClick={e=>{e.preventDefault();showUpdatePwd();setUpdatePwdId(item._id)}}>Update Password</span><br/>
-                                <span className="action-item" onClick={e=>{disableTeacher(item.user_id)}}>Disable</span>&nbsp;
-                                <span className="action-item" onClick={e=>{deleteTeacher(item.user_id)}}>Delete</span>
+                                <span className="action-item" onClick={e=>{disableTeacher(item._id)}}>Disable</span>&nbsp;
+                                <span className="action-item" onClick={e=>{deleteTeacher(item._id)}}>Delete</span>
                             </td>
                         </tr>
                     )
@@ -196,9 +196,13 @@ function ViewTeacherList() {
     <span className="form-title">Update Password</span>
                 <div className="form-field-container">
                 <label className="form-field-label">New Password</label>
-                <input className="form-field" id="updated-pass" type="text" onChange={e=>{e.preventDefault();setUpdatedPass(e.target.value)}} />
+                <input className="form-field full-width-field" id="updated-pass" type="text" onChange={e=>{e.preventDefault();setUpdatedPass(e.target.value)}} />
                 </div>
+                <div className="update-pass-button-container">
                 <button className="submit-button" onClick={updatePassword}>SUBMIT</button>
+                &nbsp; &nbsp; &nbsp;
+                <button className="submit-button" onClick={hideUpdatePwd}>CLOSE</button>
+                </div>
     </div>
         </>
     )

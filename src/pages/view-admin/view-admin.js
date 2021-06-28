@@ -26,7 +26,7 @@ function ViewAdmin(props) {
                     .catch((error) => {
                         console.error('Error:', error);
                     });
-    })
+    },[])
 
    if(!adminData){
     return (
@@ -38,8 +38,17 @@ function ViewAdmin(props) {
    else{
     return (
         <div className="view-admin" >
-            <span>Name: {adminData.name}</span>
-            <span >email: {adminData.email}</span>
+            <label className="view-student-heading"><b>Admin Details</b></label>
+            <table>
+              <tr>
+                  <td><b>Admin Name</b></td>
+                  <td>{adminData.name}</td>
+              </tr>
+              <tr>
+                  <td><b>Admin Email</b></td>
+                  <td>{adminData.email}</td>
+              </tr>
+            </table>
         </div>
     )
    }

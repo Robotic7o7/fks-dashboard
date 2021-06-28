@@ -8,6 +8,9 @@ function ViewClassList() {
 
     const [classList, setClassList] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
+    const [updatedSubID, setUpdatedSubID] = useState('');
+    const [updatedSub, setUpdatedSub] = useState([]);
+    const [prevSub, setPrevSub] = useState({});
 
     function getClasses(){
         fetch(`http://localhost:3000/classes?q=`+searchQuery, {
@@ -83,6 +86,64 @@ function ViewClassList() {
 
     }
 
+    function fetchPrevSubs(id){
+        fetch(`http://localhost:3000/classes/${id}/get_all_subjects`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        checkSubValidity(data)
+                        setPrevSub(data);
+                    }
+
+                    else {
+                        console.error("error");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
+    }
+
+    function checkSubValidity(prevData){
+        fetch(`http://localhost:3000/subjects?q=${updatedSub}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message != "failed") {
+                    console.log("im in check validity")
+                    let merged = [{...data}];
+                    let merged2 = [{...prevData}]
+                    console.log("merge1 ", merged);
+                    console.log("merge2 ", merged2);
+                    Array.prototype.push.apply(merged,merged2); 
+                }
+
+                else {
+                    alert('Invalid Subject, please add the subject')
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+    }
+
+    function updateSubject(){
+        fetchPrevSubs(updatedSubID);
+        console.log("updated Sub"+ updatedSub)
+    }
+
     function showNotifSuccess(){
         document.getElementById("notif-success").style.display="block";
     }
@@ -95,6 +156,15 @@ function ViewClassList() {
         document.getElementById("notif-success").style.display="none";
         document.getElementById("notif-failed").style.display="none";
     }
+
+    function showUpdateSub(){
+        document.getElementById("sub-update").style.display="block";
+    }
+
+    function hideUpdateSub(){
+        document.getElementById("sub-update").style.display="none";
+    }
+
 
     return (
         <>
@@ -137,9 +207,9 @@ function ViewClassList() {
                                 )
                             })}</td>
                             <td>
-                                <Link to={"/view-student/" + item.user_id} className="action-item">Edit</Link><br />
+                                <Link to={"/view-student/" + item._id} className="action-item">Edit</Link><br />
                                 <span className="action-item">Add Students</span><br />
-                                <span className="action-item">Add Subjects</span><br />
+                                <span className="action-item" onClick={e=>{e.preventDefault(); setUpdatedSubID(item._id);showUpdateSub()}}>Add Subjects</span><br />
                                 <span className="action-item">Add Teachers</span><br />
                                 <span className="action-item">View Students</span><br />
                                 <span className="action-item" onClick={e=>{disableClass(item._id)}}>Disable</span><br />
@@ -164,6 +234,19 @@ function ViewClassList() {
             <label className="notif-component-message">Error occured, try again.</label>
             <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
         </div>
+
+        <div className="update-password" id="sub-update">
+    <span className="form-title">Update Subject</span>
+                <div className="form-field-container">
+                <label className="form-field-label">New Subject</label>
+                <input className="form-field full-width-field" id="updated-sub" type="text" onChange={e=>{e.preventDefault();setUpdatedSub(e.target.value)}} />
+                </div>
+                <div className="update-pass-button-container">
+                <button className="submit-button" onClick={updateSubject}>SUBMIT</button>
+                &nbsp; &nbsp; &nbsp;
+                <button className="submit-button" onClick={hideUpdateSub}>CLOSE</button>
+                </div>
+    </div>
         </>
     )
 }

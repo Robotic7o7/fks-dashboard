@@ -1,9 +1,11 @@
 .nav{
     height:60px;
     width:100vw;
-    background-color: #fff;
+    background-color:#F1EE8A;
+    background-image: url("/src/assets/top-nav-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     box-sizing: border-box;
-    padding:0 50px 0 300px;
     position: fixed;
     top:0;
     left:0;
@@ -27,6 +29,18 @@
 .nav-logo{
     font-size: 24px;
     margin-top:25px;
+}
+
+.nav-item-group{
+    margin-left:20px;
+}
+
+.nav-icon{
+    height:30px;
+    width:30px;
+    position:relative;
+    top:8px;
+    margin-right:-10px;
 }
 
 .user-icon{
@@ -53,6 +67,10 @@
 .display-name{
     color:#000;
     text-decoration: none;
+}
+
+.nav-item-disp{
+    height:100%;
 }
 
 

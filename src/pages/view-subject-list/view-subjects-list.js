@@ -148,7 +148,7 @@ function ViewSubjectList() {
                                 <td>{item.subject_name}</td>
                                 <td>3</td>
                                 <td>
-                                    <Link to={"/view-student/" + item.user_id} className="action-item">Edit</Link><br />
+                                    <Link to={"/view-subject/" + item._id} className="action-item">Edit</Link><br />
                                     {item.disable ?
                                         <span className="action-item" onClick={e => { enableSubject(item._id) }}>Enable</span>
                                         :

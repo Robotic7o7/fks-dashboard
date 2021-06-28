@@ -27,10 +27,11 @@ import BirthdayCalendar from './components/birthday-calendar/birthday-calendar';
 import StudentResidenceMap from './components/student-residence-map/student-residence-map';
 import AddBranch from './pages/add-branch/add-branch';
 import ViewBranchList from './pages/view-branch-list/view-branch-list';
-import Calculator from './components/calculator/calculator';
 import News from './pages/news/news';
 import AddNews from './pages/add-news/add-news';
 import ViewPerformance from './pages/view-performance/view-performance';
+import ViewSubject from './pages/view-subject/view-subject';
+import ViewBranch from './view-branch/view-branch';
 
 function App() {
   return (
@@ -124,6 +125,11 @@ function App() {
             <SideNav />
             <ViewClassList />
           </Route>
+          <Route exact path="/view-subject/:id">
+            <Nav />
+            <SideNav />
+            <ViewSubject/>
+          </Route>
           <Route exact path="/view-subject-list">
             <Nav />
             <SideNav />
@@ -153,6 +159,11 @@ function App() {
             <Nav />
             <SideNav />
             <AddBranch />
+          </Route>
+          <Route exact path="/view-branch/:id">
+            <Nav />
+            <SideNav />
+            <ViewBranch/>
           </Route>
           <Route exact path="/view-branch-list">
             <Nav />
