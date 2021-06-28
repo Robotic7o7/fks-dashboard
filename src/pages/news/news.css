@@ -15,6 +15,7 @@
     border-radius: 10px;
     padding:10px 20px;
     margin:0 0 40px 0;
+    position: relative;
 }
 
 .news-item-user-img{
@@ -41,4 +42,17 @@
     font-family: "ComicSans", sans-serif;
     font-size: 14px;
     color:#666;
+}
+
+.news-item-delete-button{
+    position: absolute;
+    top:5px;
+    right:10px;
+    width:20px;
+    stroke:#ccc;
+    cursor: pointer;
+}
+
+.news-item-delete-button:hover{
+    stroke:#666;
 }

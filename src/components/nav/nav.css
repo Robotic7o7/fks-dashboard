@@ -83,3 +83,11 @@
     background-color: #f9f9f9;
     cursor: auto;
 }
+
+.calculator{
+    position: absolute;
+    top:0px;
+    right:50px;
+    display: none;
+    z-index: -1;
+}

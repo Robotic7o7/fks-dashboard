@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Calculator from '../calculator/calculator';
 import './nav.css';
 
 function Nav() {
@@ -27,13 +28,22 @@ function Nav() {
         document.getElementsByClassName('notifications-container')[0].style.display="none"
     }
 
+    function toggleCalculator(){
+        if(document.getElementsByClassName('calculator')[0].style.display=="none")
+        document.getElementsByClassName('calculator')[0].style.display="block"
+
+        else
+        document.getElementsByClassName('calculator')[0].style.display="none"
+    }
+
     return (
         <div className="nav">
             <div className="nav-left">
             </div>
             <div className="nav-right">
                 <span className="nav-item">Dictionary</span>
-                <span className="nav-item">Calculator</span>
+                <span className="nav-item" onClick={e=>{e.preventDefault();toggleCalculator(e)}}>Calculator</span>
+                <div className="calculator" ><Calculator /></div>
                 <span className="nav-item" onClick={e=>{e.preventDefault();toggleNotifications(e)}}>Updates
                 
                 <div className="notifications-container">

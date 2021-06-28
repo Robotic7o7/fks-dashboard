@@ -94,7 +94,7 @@ function AddAssignment() {
     }
 
     function getSubjects(searchQuery) {
-        fetch(`http://165.22.210.235:4000/subjects?q=` + searchQuery, {
+        fetch(`http://localhost:3000/subjects?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function AddAssignment() {
     }
 
     function getStudents(searchQuery) {
-        fetch(`http://165.22.210.235:4000/users/students?q=` + searchQuery, {
+        fetch(`http://localhost:3000/users/students?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ function AddAssignment() {
     }
 
     function getClasses(searchQuery) {
-        fetch(`http://165.22.210.235:4000/classes?q=` + searchQuery, {
+        fetch(`http://localhost:3000/classes?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -191,11 +191,11 @@ function AddAssignment() {
                 "option4":"${document.getElementsByClassName('assignment-question-option4-form-field')[i] ? document.getElementsByClassName('assignment-question-option4-form-field')[i].value : ""}"
             }`
 
-            if (i != document.getElementsByClassName('question-container').length-1) {
+            if (i != document.getElementsByClassName('question-container').length - 1) {
                 questionObj = questionObj + ","
             }
 
-            if (i == document.getElementsByClassName('question-container').length -1)
+            if (i == document.getElementsByClassName('question-container').length - 1)
                 questionObj = questionObj + "]"
 
         }
@@ -228,7 +228,7 @@ function AddAssignment() {
         }
 
         if (validated == 1) {
-            fetch('http://165.22.210.235:4000/assignments/new', {
+            fetch('http://localhost:3000/assignments/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -248,6 +248,7 @@ function AddAssignment() {
                 .then(data => {
                     if (data.message != "failed") {
                         console.log(data)
+                        clearInput()
                         showNotifSuccess()
                     }
 
@@ -288,6 +289,22 @@ function AddAssignment() {
     }, [classListFetched, studentListFetched, subjectListFetched])
 
 
+    function clearInput() {
+        setAssignmentName('')
+        setAssignmentCategory('')
+        setAssignmentDueDate('')
+        setIsGraded('')
+        setAssignmentSubject('')
+        setAssignmentSubjectId('')
+        setSubjectListFetched([])
+        setStudentListFetched([])
+        setStudentListLocal([])
+        setStudentListId([])
+        setClassListFetched([])
+        setClassListLocal([])
+        setClassListId([])
+    }
+
     function showNotifSuccess() {
         document.getElementById("notif-success").style.display = "block";
     }
@@ -311,7 +328,12 @@ function AddAssignment() {
                 </div>
                 <div className="form-field-container">
                     <label className="form-field-label">Category</label>
-                    <input className="form-field" type="text" id="assignment-category" value={assignmentCategory} onChange={e => { e.preventDefault(); setAssignmentCategory(e.target.value) }} />
+                    <select className="form-field" type="text" id="assignment-category" value={assignmentCategory} onChange={e => { e.preventDefault(); setAssignmentCategory(e.target.value) }}>
+                    <option value="PROJECT">Project</option>                        
+                    <option value="ASSIGNMENT">Assignment</option>                        
+                    <option value="HOMEWORK">Homework</option>                        
+                    <option value="EXAM">Exam</option>                        
+                    </select>
                 </div>
                 <div className="form-field-container">
                     <label className="form-field-label">Due Date</label>
@@ -319,7 +341,10 @@ function AddAssignment() {
                 </div>
                 <div className="form-field-container">
                     <label className="form-field-label">Is it graded?</label>
-                    <input className="form-field" type="text" id="is-graded" value={isGraded} onChange={e => { e.preventDefault(); setIsGraded(e.target.value) }} />
+                    <select className="form-field" type="text" id="is-graded" value={isGraded} onChange={e => { e.preventDefault(); setIsGraded(e.target.value) }}>
+                        <option value="TRUE">Yes</option>
+                        <option value="FALSE">No</option>
+                    </select>
                 </div>
                 <div className="form-field-container">
                     <label className="form-field-label">Class List</label>
@@ -369,7 +394,11 @@ function AddAssignment() {
                     </div>
                     <div className="form-field-container">
                         <label className="form-field-label">Question Type</label>
-                        <input className="form-field assignment-question-type-form-field" type="text" />
+                        <select className="form-field assignment-question-type-form-field" type="text">
+                            <option value="LA">Long Answer</option>
+                            <option value="SA">Short Answer</option>
+                            <option value="MCQ">Multiple Choice</option>
+                        </select>
                     </div>
                     <div className="form-field-container">
                         <label className="form-field-label">Option 1</label>

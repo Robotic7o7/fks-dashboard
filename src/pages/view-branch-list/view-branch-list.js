@@ -10,7 +10,7 @@ function ViewBranchList() {
     const [searchQuery, setSearchQuery] = useState('')
 
     function getBranches() {
-        fetch(`http://165.22.210.235:4000/branches?q=`+searchQuery, {
+        fetch(`http://localhost:3000/branches?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function ViewBranchList() {
     }, [searchQuery])
 
     function disableBranch(id) {
-        fetch(`http://165.22.210.235:4000/branches/${id}/disable`, {
+        fetch(`http://localhost:3000/branches/${id}/disable`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ function ViewBranchList() {
     }
 
     function enableBranch(id) {
-        fetch(`http://165.22.210.235:4000/branches/${id}/enable`, {
+        fetch(`http://localhost:3000/branches/${id}/enable`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function ViewBranchList() {
     }
 
     function deleteBranch(id) {
-        fetch(`http://165.22.210.235:4000/branches/${id}/permanent_delete`, {
+        fetch(`http://localhost:3000/branches/${id}/permanent_delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

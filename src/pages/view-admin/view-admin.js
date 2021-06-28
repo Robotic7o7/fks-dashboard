@@ -12,7 +12,7 @@ function ViewAdmin(props) {
 
     useEffect(()=>{
 
-        fetch('http://165.22.210.235:4000/users/'+id, {
+        fetch('http://localhost:3000/users/'+id, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

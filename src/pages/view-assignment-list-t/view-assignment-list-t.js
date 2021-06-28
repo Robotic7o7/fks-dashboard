@@ -14,7 +14,7 @@ function ViewAssignmentListT() {
 
     //fetch assignments
     function getAssignments(){
-        fetch(`http://165.22.210.235:4000/assignments?q=`+searchQuery, {
+        fetch(`http://localhost:3000/assignments?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function ViewAssignmentListT() {
 
     //fetch subjects
     function getSubjects(){
-        fetch(`http://165.22.210.235:4000/subjects?q=`+searchQuerySub, {
+        fetch(`http://localhost:3000/subjects?q=`+searchQuerySub, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ function ViewAssignmentListT() {
 
 
     function disableAssignment(id){
-        fetch(`http://165.22.210.235:4000/assignments/${id}/disable`, {
+        fetch(`http://localhost:3000/assignments/${id}/disable`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ function ViewAssignmentListT() {
     }
 
     function deleteAssignment(id){
-        fetch(`http://165.22.210.235:4000/assignments/${id}/permanent_delete`, {
+        fetch(`http://localhost:3000/assignments/${id}/permanent_delete`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

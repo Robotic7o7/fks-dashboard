@@ -10,7 +10,7 @@ function ViewSubjectList() {
     const [searchQuery, setSearchQuery] = useState('')
 
     function getSubjects() {
-        fetch(`http://165.22.210.235:4000/subjects?q=`+searchQuery, {
+        fetch(`http://localhost:3000/subjects?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function ViewSubjectList() {
     }, [searchQuery])
 
     function disableSubject(id) {
-        fetch(`http://165.22.210.235:4000/subjects/${id}/disable`, {
+        fetch(`http://localhost:3000/subjects/${id}/disable`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ function ViewSubjectList() {
     }
 
     function enableSubject(id) {
-        fetch(`http://165.22.210.235:4000/subjects/${id}/enable`, {
+        fetch(`http://localhost:3000/subjects/${id}/enable`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function ViewSubjectList() {
     }
 
     function deleteSubject(id) {
-        fetch(`http://165.22.210.235:4000/subjects/${id}/permanent_delete`, {
+        fetch(`http://localhost:3000/subjects/${id}/permanent_delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

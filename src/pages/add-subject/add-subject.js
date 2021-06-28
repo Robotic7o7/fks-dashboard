@@ -14,7 +14,7 @@ function AddSubject() {
         }
 
         if (validated == 1) {
-            fetch('http://165.22.210.235:4000/subjects/new', {
+            fetch('http://localhost:3000/subjects/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,6 +27,7 @@ function AddSubject() {
                 .then(data => {
                     if (data.message != "failed") {
                         console.log(data)
+                        clearInput()
                         showNotifSuccess();
                     }
 
@@ -40,6 +41,10 @@ function AddSubject() {
                 });
 
         }
+    }
+
+    function clearInput(){
+        setSubject('')
     }
 
 
@@ -65,7 +70,7 @@ function AddSubject() {
                 <label className="form-field-label">Subject Name</label>
                 <input className="form-field" id="subject" type="text" value={subject} onChange={e => { e.preventDefault(); setSubject(e.target.value) }} />
             </div>
-            <button className="submit-button" onClick={addSubject}>SUBMIT</button>
+            <button className="submit-button" onClick={e=>{addSubject()}}>SUBMIT</button>
         </div>
         <div className="notif-component-success"id="notif-success">
             <label className="notif-component-text">Success!</label>

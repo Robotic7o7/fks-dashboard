@@ -14,7 +14,7 @@ function ViewAssignmentList() {
 
     //fetch assignments
     function getAssignments(){
-        fetch(`http://165.22.210.235:4000/assignments?q=`+searchQuery, {
+        fetch(`http://localhost:3000/assignments?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function ViewAssignmentList() {
 
     //fetch subjects
     function getSubjects(){
-        fetch(`http://165.22.210.235:4000/subjects?q=`+searchQuerySub, {
+        fetch(`http://localhost:3000/subjects?q=`+searchQuerySub, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ function ViewAssignmentList() {
 
 
     function submitAssignment(){
-        fetch('http://165.22.210.235:4000/upload/:id/upload', {
+        fetch('http://localhost:3000/upload/:id/upload', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -6,10 +6,10 @@
   font-family: Verdana;
   background: #888fa1;
   color: #fff;
-  width: 17.3%;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 10px 6px;
-  font-size: 2.2em;
+  font-size: 14px;
   border: none;
   cursor: pointer;
   border-radius: 10px 10px 18px 18px;
@@ -18,7 +18,7 @@
 
 
 .calc-container {
- width: 463px;
+ width: 320px;
  margin: auto;
   margin-top: 100px;
  padding: 21px;
@@ -38,7 +38,7 @@
 .log {
   font-family: 'Orbitron';
   background-color: #b2c2b3;
-  height: 44px;
+  height: 30px;
   text-align: left;
   outline: none;
   width: 100%;

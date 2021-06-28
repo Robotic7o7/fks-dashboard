@@ -12,7 +12,7 @@ function ViewPerformance() {
     // const [updatedPass, setUpdatedPass] = useState('')
 
     // function getPosts(){
-    //     fetch(`http://165.22.210.235:4000/posts`, {
+    //     fetch(`http://localhost:3000/posts`, {
     //         method: 'GET',
     //         headers: {
     //             'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ function ViewPerformance() {
     //     }
 
     //     if (validated == 1) {
-    //         fetch(`http://165.22.210.235:4000/users/${updatePwdID}/update`, {
+    //         fetch(`http://localhost:3000/users/${updatePwdID}/update`, {
     //             method: 'PATCH',
     //             headers: {
     //                 'Content-Type': 'application/json',

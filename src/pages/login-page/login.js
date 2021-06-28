@@ -22,7 +22,7 @@ function LoginPage() {
         }
 
         if (validated == 1) {
-            fetch('http://165.22.210.235:4000/auth/user/login', {
+            fetch('http://localhost:3000/auth/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

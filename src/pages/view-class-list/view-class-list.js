@@ -10,7 +10,7 @@ function ViewClassList() {
     const [searchQuery, setSearchQuery] = useState('')
 
     function getClasses(){
-        fetch(`http://165.22.210.235:4000/classes?q=`+searchQuery, {
+        fetch(`http://localhost:3000/classes?q=`+searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function ViewClassList() {
 
 
     function disableClass(id){
-        fetch(`http://165.22.210.235:4000/classes/${id}/disable`, {
+        fetch(`http://localhost:3000/classes/${id}/disable`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function ViewClassList() {
     }
 
     function deleteClass(id){
-        fetch(`http://165.22.210.235:4000/classes/${id}/permanent_delete`, {
+        fetch(`http://localhost:3000/classes/${id}/permanent_delete`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

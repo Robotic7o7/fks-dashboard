@@ -94,7 +94,7 @@ export default class Calculator extends Component {
     .replace(/ln/g, 'log')
     .replace(sqrtReg, 'sqrt');
 
-    let result = math.eval(newLog);
+    let result = math.evaluate(newLog)
     let finalResult;
 
     if (currentLog === '') {
@@ -116,8 +116,6 @@ export default class Calculator extends Component {
   render() {
     return (
       <div className="calc-container">
-        <p className="description" >The FKS <br/><br/>
-          unleash the mathematician within</p>
         <Screen
           log={this.state.log}
           result={this.state.result}

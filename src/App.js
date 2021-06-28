@@ -159,11 +159,6 @@ function App() {
             <SideNav />
             <ViewBranchList />
           </Route>
-          <Route exact path="/calculator">
-            <Nav />
-            <SideNav />
-            <Calculator />
-          </Route>
           <Route exact path="/news">
             <Nav />
             <SideNav />
