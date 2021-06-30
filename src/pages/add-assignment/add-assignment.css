@@ -21,3 +21,13 @@
 .class-suggestions-item:hover, .student-suggestions-item:hover{
     background-color: #eee;
 }
+
+.assignment-question-text-form-field{
+    height:120px;
+    width:90%;
+}
+
+.assignment-question-marks-form-field{
+    width:20%;
+}
+

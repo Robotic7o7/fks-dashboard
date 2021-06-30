@@ -158,7 +158,7 @@ function AddStudent() {
                 console.error('Error:', error);
             });
     }
-    
+
     function getSubjects(id) {
         fetch(`http://localhost:3000/classes/${id}/get_all_subjects`, {
             method: 'GET',
@@ -176,9 +176,9 @@ function AddStudent() {
             });
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getSubjects(studentCOJ)
-    },[studentCOJ])
+    }, [studentCOJ])
 
     function showNotifSuccess() {
         document.getElementById("notif-success").style.display = "block";
@@ -195,94 +195,138 @@ function AddStudent() {
 
     return (
         <>
-            <div className="form-container">
-                <span className="form-title">Add Student</span>
-                <div className="form-field-container">
-                    <label className="form-field-label">Profile Picture</label>
-                    <input className="form-field" type="file" />
+
+
+            <div className="form-layout" id="add-assignment-form">
+                <div className="form-layout-row">
+                    <div className="form-layout-70">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Fullname</label>
+                            <input className="form-field full-width-field" type="text" id="student-full-name" value={studentFullName} onChange={e => { e.preventDefault(); setStudentFullName(e.target.value) }} />
+                        </div>
+                    </div>
+                    <div className="form-layout-30">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Profile Picture</label>
+                            <input className="form-field" type="file" />
+                        </div>
+                    </div>
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Admission Number</label>
-                    <input className="form-field" type="text" id="admission-number" value={admissionNumber} onChange={e => { e.preventDefault(); setAdmissionNumber(e.target.value) }} />
+
+                <div className="form-layout-row">
+                    <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Admission Number</label>
+                            <input className="form-field" type="text" id="admission-number" value={admissionNumber} onChange={e => { e.preventDefault(); setAdmissionNumber(e.target.value) }} />
+                        </div>
+                    </div>
+
+                    <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Gender</label>
+                            <select className="form-field" type="text" id="student-gender" value={studentGender} onChange={e => { e.preventDefault(); setStudentGender(e.target.value) }}>
+                                <option value="MALE">Male</option>
+                                <option value="FEMALE">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Date Of Birth</label>
+                            <input className="form-field" type="date" id="student-DOB" value={studentDOB} onChange={e => { e.preventDefault(); setStudentDOB(e.target.value) }} />
+
+                        </div>
+
+                    </div>
+                    <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Blood Group</label>
+                            <select className="form-field" type="text" id="student-blood-group" value={studentBloodGroup} onChange={e => { e.preventDefault(); setStudentBloodGroup(e.target.value) }}>
+                                <option value="A_POSITIVE">A Positive</option>
+                                <option value="O_POSITIVE">O Positive</option>
+                                <option value="B_POSITIVE">B Positive</option>
+                                <option value="AB_POSITIVE">AB Positive</option>
+                                <option value="AB_POSITIVE">AB Positive</option>
+                                <option value="A_NEGATIVE">A Negative</option>
+                                <option value="O_NEGATIVE">O Negative</option>
+                                <option value="B_NEGATIVE">B Negative</option>
+                                <option value="AB_NEGATIVE">AB Negative</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Password</label>
-                    <input className="form-field" type="text" id="student-password" value={password} onChange={e => { e.preventDefault(); setPassword(e.target.value) }} />
+
+                <div className="form-layout-row">
+                    <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Email</label>
+                            <input className="form-field" type="text" id="student-email" value={studentEmail} onChange={e => { e.preventDefault(); setStudentEmail(e.target.value) }} />
+                        </div>
+
+                    </div>
+                    <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Password</label>
+                            <input className="form-field" type="text" id="student-password" value={password} onChange={e => { e.preventDefault(); setPassword(e.target.value) }} />
+                        </div>
+                    </div>
+                    <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">School Branch</label>
+                            <select className="form-field" type="text" id="student-branch" value={studentBranch} onChange={e => { e.preventDefault(); setStudentBranch(e.target.value) }}>
+                                {branchList.map((item) => {
+                                    return (
+                                        <option value={item.branch_name}>{item.branch_name}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+
+                    </div>
+                    <div className="form-layout-25"></div>
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Fullname</label>
-                    <input className="form-field" type="text" id="student-full-name" value={studentFullName} onChange={e => { e.preventDefault(); setStudentFullName(e.target.value) }} />
+
+                <div className="form-layout-row">
+                    <div className="form-layout-70">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Home Address</label>
+                            <input className="form-field student-address-field" type="text" id="student-address" value={studentAddress} onChange={e => { e.preventDefault(); setStudentAddress(e.target.value) }} />
+                        </div>
+                    </div>
+                    <div className="form-layout-30 layout-stacked">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Year Of Joining</label>
+                            <input className="form-field" type="text" id="student-YOJ" value={studentYOJ} onChange={e => { e.preventDefault(); setStudentYOJ(e.target.value) }} />
+                        </div>
+                        <div className="form-field-container">
+                            <label className="form-field-label">Class Of Joining</label>
+                            <select className="form-field" type="text" id="student-COJ" value={studentCOJ} onChange={e => { e.preventDefault(); setStudentCOJ(e.target.value); getSubjects(studentCOJ) }}>
+                                <option selected>--select-class--</option>
+                                {classList.map((item) => {
+                                    return (
+                                        <option value={item._id}>{item.class_name}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                        <div className="form-field-container">
+                            <label className="form-field-label">Subjects</label>
+                            Select All<input type="checkbox" />
+                            {subjectList.map((item) => {
+                                return (
+                                    <div>
+                                        {item.subject_name}<input type="checkbox" />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Date Of Birth</label>
-                    <input className="form-field" type="date" id="student-DOB" value={studentDOB} onChange={e => { e.preventDefault(); setStudentDOB(e.target.value) }} />
+                <div className="form-layout-row">
+                    <div className="form-layout-70">
+                    <button className="submit-button" onClick={submitForm}>SUBMIT</button>
+                    </div>
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Gender</label>
-                    <select className="form-field" type="text" id="student-gender" value={studentGender} onChange={e => { e.preventDefault(); setStudentGender(e.target.value) }}>
-                        <option value="MALE">Male</option>
-                        <option value="FEMALE">Female</option>
-                    </select>
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Blood Group</label>
-                    <select className="form-field" type="text" id="student-blood-group" value={studentBloodGroup} onChange={e => { e.preventDefault(); setStudentBloodGroup(e.target.value) }}>
-                        <option value="A_POSITIVE">A Positive</option>
-                        <option value="O_POSITIVE">O Positive</option>
-                        <option value="B_POSITIVE">B Positive</option>
-                        <option value="AB_POSITIVE">AB Positive</option>
-                        <option value="AB_POSITIVE">AB Positive</option>
-                        <option value="A_NEGATIVE">A Negative</option>
-                        <option value="O_NEGATIVE">O Negative</option>
-                        <option value="B_NEGATIVE">B Negative</option>
-                        <option value="AB_NEGATIVE">AB Negative</option>
-                    </select>
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Email</label>
-                    <input className="form-field" type="text" id="student-email" value={studentEmail} onChange={e => { e.preventDefault(); setStudentEmail(e.target.value) }} />
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">School Branch</label>
-                    <select className="form-field" type="text" id="student-branch" value={studentBranch} onChange={e => { e.preventDefault(); setStudentBranch(e.target.value) }}>
-                        {branchList.map((item) => {
-                            return (
-                                <option value={item.branch_name}>{item.branch_name}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Home Address</label>
-                    <input className="form-field" type="text" id="student-address" value={studentAddress} onChange={e => { e.preventDefault(); setStudentAddress(e.target.value) }} />
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Year Of Joining</label>
-                    <input className="form-field" type="text" id="student-YOJ" value={studentYOJ} onChange={e => { e.preventDefault(); setStudentYOJ(e.target.value) }} />
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Class Of Joining</label>
-                    <select className="form-field" type="text" id="student-COJ" value={studentCOJ} onChange={e => { e.preventDefault(); setStudentCOJ(e.target.value); getSubjects(studentCOJ) }}>
-                        <option selected>--select-class--</option>
-                        {classList.map((item) => {
-                            return (
-                                <option value={item._id}>{item.class_name}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Subjects</label>
-                    Select All<input type="checkbox" />
-                    {subjectList.map((item) => {
-                        return (
-                            <div>
-                                {item.subject_name}<input type="checkbox" />
-                            </div>
-                        )
-                    })}
-                </div>
-                <button className="submit-button" onClick={submitForm}>SUBMIT</button>
             </div>
             <div className="notif-component-success" id="notif-success">
                 <label className="notif-component-text">Success!</label>
