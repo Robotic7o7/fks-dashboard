@@ -56,6 +56,10 @@ function LoginPage() {
 
     return (
        <div className="login-page">
+            <img src="/bg-2.png" className="bg-img-1"/>
+            <img src="/bg-4.png" className="bg-img-2"/>
+            <img src="/bg-1.png" className="bg-img-3"/>
+            <img src="/bg-3.png" className="bg-img-4"/>
            <div className="login-form-container">
             <span className="form-title">Login Here</span>
             <div className="form-field-container">

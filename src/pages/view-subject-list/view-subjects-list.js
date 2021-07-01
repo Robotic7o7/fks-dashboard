@@ -125,16 +125,25 @@ function ViewSubjectList() {
 
     return (
         <>
+
+<div className="screen-main">
+            <img src="/bg-2.png" className="bg-img-1"/>
+            <img src="/bg-4.png" className="bg-img-2"/>
+            <img src="/bg-1.png" className="bg-img-3"/>
+            <img src="/bg-3.png" className="bg-img-4"/>
+
             <div className="view-subject-list">
-                <div className="teacher-sort-bar">
-                    <input className="query-field" type="text" onChange={e=>{e.preventDefault();setSearchQuery(e.target.value)}}/>
-                    <button className="query-button">Search</button>
+                {/* <div className="teacher-sort-bar">
+                   
                     {/* <div className="query-function-container">
            <button className="query-button">Sort Asscending</button>
             <button className="query-button">Sort Descending</button>
             <button className="query-button">Sort Alphabetically</button>
-           </div> */}
-                </div>
+           </div> 
+                </div> */}
+
+                <input className="query-field" type="text" onChange={e=>{e.preventDefault();setSearchQuery(e.target.value)}}/>
+                    <button className="query-button">Search</button>
 
                 <table>
                     <tr>
@@ -174,6 +183,8 @@ function ViewSubjectList() {
                 <label className="notif-component-message">Error occured, try again.</label>
                 <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
             </div>
+            </div>
+           
         </>
     )
 }

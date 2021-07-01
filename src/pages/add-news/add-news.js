@@ -48,7 +48,7 @@ function AddNews() {
         }
     }
 
-    function trixHandler(html, text){
+    function trixHandler(html, text) {
         setPostText(html)
     }
 
@@ -71,25 +71,32 @@ function AddNews() {
     }
 
     return (
-        <div className="add-news">
-            <span className="news-title">Add News</span>
-            <TrixEditor onChange={trixHandler}/>
-            <button className="submit-button" onClick={submitForm}>SUBMIT</button>
+        <div className="screen-main">
+            <img src="/bg-2.png" className="bg-img-1" />
+            <img src="/bg-4.png" className="bg-img-2" />
+            <img src="/bg-1.png" className="bg-img-3" />
+            <img src="/bg-3.png" className="bg-img-4" />
+            <div className="add-news">
+                <span className="news-title">Add News</span>
+                <TrixEditor onChange={trixHandler} />
+                <button className="submit-button" onClick={submitForm}>SUBMIT</button>
 
-            <div className="notif-component-success" id="notif-success">
-                <label className="notif-component-text">Success!</label>
-                <br />
-                <label className="notif-component-message">News Posted.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
-            </div>
+                <div className="notif-component-success" id="notif-success">
+                    <label className="notif-component-text">Success!</label>
+                    <br />
+                    <label className="notif-component-message">News Posted.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                </div>
 
-            <div className="notif-component-failed" id="notif-failed">
-                <label className="notif-component-text">Failed!</label>
-                <br />
-                <label className="notif-component-message">Error occured, try again.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                <div className="notif-component-failed" id="notif-failed">
+                    <label className="notif-component-text">Failed!</label>
+                    <br />
+                    <label className="notif-component-message">Error occured, try again.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                </div>
             </div>
         </div>
+
     )
 }
 

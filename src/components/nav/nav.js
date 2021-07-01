@@ -41,11 +41,11 @@ function Nav() {
             </div>
             <div className="nav-right">
                 <span>
-                <img src="/icons/news.png" className="nav-icon"/>
+                {/* <img src="/icons/news.png" className="nav-icon"/> */}
                 <span className="nav-item">Dictionary</span>
                 </span>
                 <span>
-                <img src="/icons/news.png" className="nav-icon"/>
+                {/* <img src="/icons/news.png" className="nav-icon"/> */}
                 <span className="nav-item" onClick={e=>{e.preventDefault();toggleCalculator(e)}}>Calculator</span>
                 </span>
                 

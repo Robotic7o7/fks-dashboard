@@ -1,5 +1,7 @@
 .add-news{
-    margin:100px 0 0 350px;
+    margin-top:50px;
+    margin-left:150px;
+    z-index:10;
 }
 
 /*trix*/

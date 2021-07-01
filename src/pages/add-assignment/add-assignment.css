@@ -1,8 +1,14 @@
+.assignment-length{
+    height:auto!important;
+}
+
+
 .question-container{
     border-top:1px solid #000;
     border-bottom:1px solid #000;
-    background-color: #eee;
+    background-color: #fff;
 }
+
 
 .class-suggestions, .student-suggestions{
     border:1px solid #666;

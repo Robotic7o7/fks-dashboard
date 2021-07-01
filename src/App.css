@@ -3,7 +3,7 @@
   src: url(./comic.ttf);
 }
 body{
-  background-color: #F9F9F9;
+  background-color: #666;
 }
 .form-field {
   display: block;
@@ -15,6 +15,61 @@ body{
   outline: none;
   box-sizing:border-box;
 }
+
+.screen-main{
+  margin-top:100px;
+  margin-left:280px;
+  box-sizing:border-box;
+  position:relative;
+  padding-top:20px;
+  width: calc(100%-280px);
+  background-color:#fff;
+  height: 100vh;
+  border-radius:10px;
+  box-shadow:10px 15px 10px rgb(122, 122, 122);
+  overflow:hidden;
+}
+
+.bg-img-1{
+  position:absolute;
+  right:0;
+  top:0px;
+  height:250px;
+  width:250px;
+  z-index:5;
+  filter:opacity(40%);
+}
+
+.bg-img-2{
+  position:absolute;
+  left:0;
+  top:160px;
+  height:250px;
+  width:250px;
+  z-index:5;
+  filter:opacity(40%);
+}
+
+.bg-img-3{
+  position:absolute;
+  right:0;
+  top:400px;
+  height:300px;
+  width:300px;
+  z-index:5;
+  filter:opacity(40%);
+}
+
+.bg-img-4{
+  position:absolute;
+  left:0;
+  top:600px;
+  height:250px;
+  width:250px;
+  z-index:5;
+  filter:opacity(40%);
+}
+
 
 .form-field:hover {
   border-color: #000;
@@ -39,6 +94,7 @@ body{
   font-family: 'comicSans';
   padding: 10px 20px;
   cursor: pointer;
+  z-index:100;
 }
 
 .submit-button:hover {
@@ -58,9 +114,8 @@ body{
 }
 
 .form-layout{
-  margin-top:120px;
-  margin-left:300px;
-  width:70%;
+  width:100%;
+  z-index:100;
 }
 
 
@@ -152,6 +207,7 @@ table{
   margin:50px auto 50px auto;
   position: relative;
   left:60px;
+  z-index:10;
 }
 
 .hidden{
@@ -170,6 +226,8 @@ table{
   box-shadow: 5px 10px 30px #88888871;
   box-sizing:border-box;
   padding:10px;
+  z-index:100;
+  background-color:#fff;
 }
 
 .notif-component-failed{
@@ -184,6 +242,8 @@ table{
   box-shadow: 5px 10px 30px #88888871;
   box-sizing:border-box;
   padding:10px;
+  z-index:100;
+  background-color:#fff;
 }
 
 .notif-component-text{

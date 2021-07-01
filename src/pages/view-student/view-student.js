@@ -35,6 +35,13 @@ function ViewStudent(props) {
    }
    else{
     return (
+
+        <div className="screen-main">
+        <img src="/bg-2.png" className="bg-img-1"/>
+        <img src="/bg-4.png" className="bg-img-2"/>
+        <img src="/bg-1.png" className="bg-img-3"/>
+        <img src="/bg-3.png" className="bg-img-4"/>
+
         <div className="view-student">
             <label className="view-student-heading"><b>Student Details</b></label>
             <table>
@@ -68,6 +75,8 @@ function ViewStudent(props) {
               </tr>
             </table>
         </div>
+        </div>
+       
     )
    }
 }

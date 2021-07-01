@@ -77,31 +77,43 @@ function AddBranch() {
 
     return (
         <>
-            <div className="form-container">
-                <span className="form-title">Add Branch</span>
-                <div className="form-field-container">
-                    <label className="form-field-label">Branch Name</label>
-                    <input className="form-field" type="text" id="branch-name" value={branchName} onChange={e => { e.preventDefault(); setBranchName(e.target.value) }} />
+
+            <div className="screen-main">
+                <img src="/bg-2.png" className="bg-img-1" />
+                <img src="/bg-4.png" className="bg-img-2" />
+                <img src="/bg-1.png" className="bg-img-3" />
+                <img src="/bg-3.png" className="bg-img-4" />
+                <div className="form-container">
+                    <span className="form-title">Add Branch</span>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Branch Name</label>
+                        <input className="form-field" type="text" id="branch-name" value={branchName} onChange={e => { e.preventDefault(); setBranchName(e.target.value) }} />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Branch Code</label>
+                        <input className="form-field" type="text" id="branch-code" value={branchCode} onChange={e => { e.preventDefault(); setBranchCode(e.target.value) }} />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Address</label>
+                        <input className="form-field" type="text" id="branch-address" value={branchAddress} onChange={e => { e.preventDefault(); setBranchAddress(e.target.value) }} />
+                    </div>
+                    <button className="submit-button" onClick={submitForm}>SUBMIT</button>
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Address</label>
-                    <input className="form-field" type="text" id="branch-address" value={branchAddress} onChange={e => { e.preventDefault(); setBranchAddress(e.target.value) }} />
+                <div className="notif-component-success" id="notif-success">
+                    <label className="notif-component-text">Success!</label>
+                    <br />
+                    <label className="notif-component-message">Branch added.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
                 </div>
-                <button className="submit-button" onClick={submitForm}>SUBMIT</button>
-            </div>
-            <div className="notif-component-success" id="notif-success">
-                <label className="notif-component-text">Success!</label>
-                <br />
-                <label className="notif-component-message">Branch added.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+
+                <div className="notif-component-failed" id="notif-failed">
+                    <label className="notif-component-text">Failed!</label>
+                    <br />
+                    <label className="notif-component-message">Error occured, try again.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                </div>
             </div>
 
-            <div className="notif-component-failed" id="notif-failed">
-                <label className="notif-component-text">Failed!</label>
-                <br />
-                <label className="notif-component-message">Error occured, try again.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
-            </div>
         </>
     )
 }

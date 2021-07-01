@@ -321,6 +321,12 @@ function AddAssignment() {
     return (
         <>
 
+<div className="screen-main assignment-length">
+            <img src="/bg-2.png" className="bg-img-1"/>
+            <img src="/bg-4.png" className="bg-img-2"/>
+            <img src="/bg-1.png" className="bg-img-3"/>
+            <img src="/bg-3.png" className="bg-img-4"/>
+
             <div className="form-layout" id="add-assignment-form">
                 <div className="form-layout-row">
                     <div className="form-layout-70">
@@ -476,6 +482,7 @@ function AddAssignment() {
                 <br />
                 <label className="notif-component-message">Error occured, try again.</label>
                 <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+            </div>
             </div>
         </>
     )
