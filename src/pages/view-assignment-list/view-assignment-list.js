@@ -1,21 +1,24 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./view-assignment-list.css"
 import { isTSMappedType } from "@babel/types";
 import S3 from "react-aws-s3";
+import axios from 'axios';
 
 
 function ViewAssignmentList() {
 
     const [assignmentList, setAssignmentList] = useState([])
     const [subjectData, setSubjectData] = useState([]);
-    const [searchQuery, setSearchQuery]=useState('');
-    const [searchQuerySub, setSearchQuerySub]=useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuerySub, setSearchQuerySub] = useState('');
+    const [assignmentID, setAssignmentID] = useState('');
+    const [assignmentImgURL, setAssignmentImgURL] = useState('');
 
     //fetch assignments
-    function getAssignments(){
-        fetch(`http://localhost:3000/assignments?q=`+searchQuery, {
+    function getAssignments() {
+        fetch(`http://localhost:3000/assignments?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,8 +42,8 @@ function ViewAssignmentList() {
 
 
     //fetch subjects
-    function getSubjects(){
-        fetch(`http://localhost:3000/subjects?q=`+searchQuerySub, {
+    function getSubjects() {
+        fetch(`http://localhost:3000/subjects?q=` + searchQuerySub, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,23 +95,28 @@ function ViewAssignmentList() {
         e.preventDefault();
     }
 
-    function displayUpload(){
-        document.getElementById("assignment-upload").style.display="grid";
+    function displayUpload() {
+        document.getElementById("assignment-upload").style.display = "grid";
     }
 
-    function hideUpload(){
-        document.getElementById("assignment-upload").style.display="none";
+    function hideUpload() {
+        document.getElementById("assignment-upload").style.display = "none";
     }
 
 
-    function submitAssignment(){
-        fetch('http://localhost:3000/upload/:id/upload', {
+    //save assignment logic
+
+
+    function saveAssignment(fileurl) {
+
+        fetch(`http://localhost:3000/upload/${assignmentID}/upload_img`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                
+                student_id: localStorage.getItem('user_id'),
+                fileURL: fileurl
             }),
         })
             .then(response => response.json())
@@ -126,114 +134,98 @@ function ViewAssignmentList() {
                 showNotifFailed()
                 console.error('Error:', error);
             });
+    }
 
+    //file upload logic
+    function uploadFile(event) {
+        const data = new FormData();
+        data.append('file', event.target.files[0]);
+        axios.post("http://localhost:3000/upload/upload_assignment_img", data)
+            .then(res => { // then print response status
+                console.log(res.data.images);
+                setAssignmentImgURL(res.data.images);
+                saveAssignment(res.data.images)
+            })
     }
 
 
-    //logic for image upload new here
 
-    const fileInput = useRef();
-
-    const handleClick = (event) => {
-        event.preventDefault();
-        let file = fileInput.current.files[0];
-        let newFileName = fileInput.current.files[0].name.replace(/\..+$/, "");
-        const config = {
-          bucketName: process.env.REACT_APP_BUCKET_NAME,
-          dirName: process.env.REACT_APP_DIR_NAME /* optional */,
-          region: process.env.REACT_APP_REGION,
-          accessKeyId: process.env.REACT_APP_ACCESS_ID,
-          secretAccessKey: process.env.REACT_APP_ACCESS_KEY,
-        };
-        const ReactS3Client = new S3(config);
-        ReactS3Client.uploadFile(file, newFileName).then((data) => {
-          console.log(data);
-          if (data.status === 204) {
-            console.log("success");
-          } else {
-            console.log("fail");
-          }
-        });
-      };
-
-
-
-    function showNotifSuccess(){
-        document.getElementById("notif-success").style.display="block";
+    function showNotifSuccess() {
+        document.getElementById("notif-success").style.display = "block";
     }
 
-    function showNotifFailed(){
-        document.getElementById("notif-failed").style.display="block";
+    function showNotifFailed() {
+        document.getElementById("notif-failed").style.display = "block";
     }
 
-    function closeNotif(){
-        document.getElementById("notif-success").style.display="none";
-        document.getElementById("notif-failed").style.display="none";
+    function closeNotif() {
+        document.getElementById("notif-success").style.display = "none";
+        document.getElementById("notif-failed").style.display = "none";
     }
 
 
 
     return (
         <>
-         <div className="screen-main">
-            <img src="/bg-2.png" className="bg-img-1"/>
-            <img src="/bg-4.png" className="bg-img-2"/>
-            <img src="/bg-1.png" className="bg-img-3"/>
-            <img src="/bg-3.png" className="bg-img-4"/>
+            <div className="screen-main">
+                <img src="/bg-2.png" className="bg-img-1" />
+                <img src="/bg-4.png" className="bg-img-2" />
+                <img src="/bg-1.png" className="bg-img-3" />
+                <img src="/bg-3.png" className="bg-img-4" />
 
-            <div className="view-assignment-list">
-            <div className="subjects-bar">
-                <div className="subjects-container">
-                    <div className="subject-tab subject-tab-selected" onClick={e => { e.preventDefault(); selectSubject(e) }}>
-                        All
+                <div className="view-assignment-list">
+                    <div className="subjects-bar">
+                        <div className="subjects-container">
+                            <div className="subject-tab subject-tab-selected" onClick={e => { e.preventDefault(); selectSubject(e) }}>
+                                All
                         </div>
-                    {subjectData.map((item) => {
+                            {subjectData.map((item) => {
+                                return (
+                                    <div className="subject-tab" onClick={e => { e.preventDefault(); selectSubject(e) }}>
+                                        {item.subject_name}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    {assignmentList.map((item) => {
                         return (
-                            <div className="subject-tab" onClick={e => { e.preventDefault(); selectSubject(e) }}>
-                                {item.subject_name}
+                            <div className="assignment-list">
+                                <span className="assignment-due">Due on 7 March 2021</span>
+                                <Link to={"/view-assignment/" + item._id} className="assignment-name">{item.assignment_name}</Link>
+                                <button onClick={e => { displayUpload(); setAssignmentID(item._id) }} className="submit-button">Submit Assignment</button>
                             </div>
                         )
                     })}
+                </div >
+                <div className="upload-assignment-popup" id="assignment-upload">
+                    <div className="form-upload-container">
+                        <span className="form-title">Upload Assignment</span>
+                        <div className="form-field-container">
+                            <label className="form-field-label">Upload File</label>
+                            <input type="file" onChange={e => { uploadFile(e) }} />
+                        </div>
+                        <button className="submit-button">SUBMIT</button>
+                        <button className="submit-button button-secondary" onClick={hideUpload}>CLOSE</button>
+                    </div>
+                </div>
+
+
+                <div className="notif-component-success" id="notif-success">
+                    <label className="notif-component-text">Success!</label>
+                    <br />
+                    <label className="notif-component-message">Assignment Submitted.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                </div>
+
+                <div className="notif-component-failed" id="notif-failed">
+                    <label className="notif-component-text">Failed!</label>
+                    <br />
+                    <label className="notif-component-message">Error occured, try again.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
                 </div>
             </div>
-            {assignmentList.map((item) => {
-                return (
-                    <div className="assignment-list">
-                        <span className="assignment-due">Due on 7 March 2021</span>
-                        <Link to={"/view-assignment/" + item._id} className="assignment-name">{item.assignment_name}</Link>
-                        <button onClick={displayUpload} className="submit-button">Submit Assignment</button>
-                    </div>
-                )
-            })}
-        </div >
-         <div className="upload-assignment-popup" id="assignment-upload">
-             <div className="form-upload-container">
-             <span className="form-title">Upload Assignment</span>
-                <div className="form-field-container">
-                <label className="form-field-label">Upload File</label>
-                <input className="form-field full-width-field" type="file" ref={fileInput} />
-                </div>
-                <button className="submit-button" onClick={handleClick} >SUBMIT</button>
-                <button className="submit-button button-secondary" onClick={hideUpload}>CLOSE</button>
-             </div>
-         </div>
 
-
-         <div className="notif-component-success"id="notif-success">
-            <label className="notif-component-text">Success!</label>
-            <br/>
-            <label className="notif-component-message">Assignment Submitted.</label>
-            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
-        </div>
-
-        <div className="notif-component-failed" id="notif-failed">
-            <label className="notif-component-text">Failed!</label>
-            <br/>
-            <label className="notif-component-message">Error occured, try again.</label>
-            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
-        </div>
-        </div>
-        
         </>
     )
 }
