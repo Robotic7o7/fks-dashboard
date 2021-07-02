@@ -8,6 +8,7 @@ function ViewAssignment(props) {
 
     const { id } = useParams()
     const [assignment, setAssignment] = useState('')
+    const [assignmentImg, setAssignmentImg]= useState(null);
 
     useEffect(() => {
         console.log(id)
@@ -43,6 +44,8 @@ function ViewAssignment(props) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                student_id: localStorage.getItem('user_id'),
+                assignment_id: id,
                 
             }),
         })
@@ -142,7 +145,7 @@ function ViewAssignment(props) {
              <span className="form-title">Upload Assignment</span>
                 <div className="form-field-container">
                 <label className="form-field-label">Upload File</label>
-                <input className="form-field full-width-field" type="file" />
+                <input className="form-field full-width-field" type="file" onChange={e=>{setAssignmentImg(e.target.files[0])}} />
                 </div>
                 <button className="submit-button" onClick={submitAssignment} >SUBMIT</button>
                 <button className="submit-button button-secondary" onClick={hideUpload}>CLOSE</button>

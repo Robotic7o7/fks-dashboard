@@ -6,65 +6,64 @@ function Nav() {
 
     const [displayName, setDisplayName] = useState('')
 
-    function logout(){
+    function logout() {
         localStorage.removeItem('user_id')
         localStorage.removeItem('user_type')
         localStorage.removeItem('user_name')
         localStorage.removeItem('authToken')
-        window.location.href="/"
+        window.location.href = "/"
     }
 
     useEffect(() => {
         setDisplayName(localStorage.getItem("user_name"));
     }, [])
 
+    function makeActive(e) {
+        for (var i = 0; i < document.getElementsByClassName('nav-item').length; i++) {
+            document.getElementsByClassName('nav-item')[i].classList.remove('nav-item-selected')
+        }
 
-    function toggleNotifications(){
-        if(document.getElementsByClassName('notifications-container')[0].style.display=="none")
-        document.getElementsByClassName('notifications-container')[0].style.display="block"
-
-        else
-        document.getElementsByClassName('notifications-container')[0].style.display="none"
+        e.target.classList.add('nav-item-selected')
     }
 
-    function toggleCalculator(){
-        if(document.getElementsByClassName('calculator')[0].style.display=="none")
-        document.getElementsByClassName('calculator')[0].style.display="block"
+
+    function toggleNotifications() {
+        if (document.getElementsByClassName('notifications-container')[0].style.display == "none")
+            document.getElementsByClassName('notifications-container')[0].style.display = "block"
 
         else
-        document.getElementsByClassName('calculator')[0].style.display="none"
+            document.getElementsByClassName('notifications-container')[0].style.display = "none"
+    }
+
+    function toggleCalculator() {
+        if (document.getElementsByClassName('calculator')[0].style.display == "none")
+            document.getElementsByClassName('calculator')[0].style.display = "block"
+
+        else
+            document.getElementsByClassName('calculator')[0].style.display = "none"
     }
 
     return (
         <div className="nav">
-            <div className="nav-left">
-            </div>
+            <div className="nav-left"></div>
             <div className="nav-right">
-                <span>
-                {/* <img src="/icons/news.png" className="nav-icon"/> */}
-                <span className="nav-item">Dictionary</span>
+                <span className="nav-item" onClick={e => { e.preventDefault(); makeActive(e) }}><img src="/icons/news.png" className="nav-icon" />Dictionary</span>
+                <span className="nav-item" onClick={e => { e.preventDefault(); makeActive(e); toggleCalculator(e) }}><img src="/icons/calculator.png" className="nav-icon" />Calculator</span>
+                <span className="nav-item" onClick={e => { e.preventDefault(); toggleNotifications(e) }}> <img src="/icons/updates.png" className="nav-icon" />Updates
+                    <div className="notifications-container">
+                        <span className="notifications-item" onClick={e => { e.stopPropagation(); }}>Test</span>
+                        <span className="notifications-item" onClick={e => { e.stopPropagation(); }}>Hello</span>
+                        <span className="notifications-item" onClick={e => { e.stopPropagation(); }}>This is a notification</span>
+                    </div>
                 </span>
-                <span>
-                {/* <img src="/icons/news.png" className="nav-icon"/> */}
-                <span className="nav-item" onClick={e=>{e.preventDefault();toggleCalculator(e)}}>Calculator</span>
-                </span>
-                
-                <span className="nav-item" onClick={e=>{e.preventDefault();toggleNotifications(e)}}>Updates
-                
-                <div className="notifications-container">
-                    <span className="notifications-item" onClick={e=>{e.stopPropagation();}}>Test</span>
-                    <span className="notifications-item" onClick={e=>{e.stopPropagation();}}>Hello</span>
-                    <span className="notifications-item" onClick={e=>{e.stopPropagation();}}>This is a notification</span>
-                </div>
-                </span>
-                <span className="nav-item" onClick={e=>{e.preventDefault();logout()}}>Logout</span>
-                <span className="nav-item-disp">
-                <span className="nav-item display-name">{displayName}</span>
-                <Link to="/account" className="nav-item"><svg className="user-icon" xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
+                <span className="nav-item" onClick={e => { e.preventDefault(); logout() }}><img src="/icons/logout.png" className="nav-icon" />Logout</span>
+                <div className="nav-display-name-container">
+                <span className="display-name">{displayName}</span>
+                <Link to="/account" className=""><svg className="user-icon" xmlns="http://www.w3.org/2000/svg" width="34.875" height="34.875" viewBox="0 0 34.875 34.875">
                     <path id="Icon_awesome-user-circle" data-name="Icon awesome-user-circle" d="M17.438.563A17.438,17.438,0,1,0,34.875,18,17.434,17.434,0,0,0,17.438.563Zm0,6.75A6.188,6.188,0,1,1,11.25,13.5,6.188,6.188,0,0,1,17.438,7.313Zm0,24.188a13.474,13.474,0,0,1-10.3-4.8,7.839,7.839,0,0,1,6.926-4.2,1.72,1.72,0,0,1,.5.077,9.309,9.309,0,0,0,2.876.485,9.274,9.274,0,0,0,2.876-.485,1.72,1.72,0,0,1,.5-.077,7.839,7.839,0,0,1,6.926,4.2A13.474,13.474,0,0,1,17.438,31.5Z" transform="translate(0 -0.563)" />
                 </svg>
                 </Link>
-                </span>
+                </div>
             </div>
         </div>
     );
