@@ -171,7 +171,7 @@ function ViewAssignmentList() {
                     <div className="assignment-list">
                         <span className="assignment-due">Due on 7 March 2021</span>
                         <Link to={"/view-assignment/" + item._id} className="assignment-name">{item.assignment_name}</Link>
-                        <button onClick={displayUpload}>Submit Assignment</button>
+                        <button onClick={displayUpload} className="submit-button">Submit Assignment</button>
                     </div>
                 )
             })}

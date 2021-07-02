@@ -1,11 +1,16 @@
 .view-assignment-list {
-    margin-top: 60px;
     overflow: hidden;
 }
 
 .assignment-list {
     width: fit-content;
-    margin: 50px 100px 0 350px;
+    margin: 50px 50px 0 200px;
+    border:1px solid #ccc;
+    width:600px;
+    box-sizing:border-box;
+    padding:30px;
+    border-radius:8px;
+    background-color:#ddd
 }
 
 .assignment-name {
@@ -26,7 +31,7 @@
     height: fit-content;
     overflow-x: scroll;
     position: relative;
-    left: 250px;
+    left: 0px;
     background-color: #fff;
     padding: 10px 20px 10px 20px;
     box-sizing: border-box;

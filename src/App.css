@@ -24,7 +24,7 @@ body{
   padding-top:20px;
   width: calc(100%-280px);
   background-color:#fff;
-  height: 100vh;
+  height: auto;
   border-radius:10px;
   box-shadow:10px 15px 10px rgb(122, 122, 122);
   overflow:hidden;
