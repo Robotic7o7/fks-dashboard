@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useRef} from "react";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./view-assignment-list.css"
 import { isTSMappedType } from "@babel/types";
+import S3 from "react-aws-s3";
 
 
 function ViewAssignmentList() {
@@ -128,6 +129,35 @@ function ViewAssignmentList() {
 
     }
 
+
+    //logic for image upload new here
+
+    const fileInput = useRef();
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        let file = fileInput.current.files[0];
+        let newFileName = fileInput.current.files[0].name.replace(/\..+$/, "");
+        const config = {
+          bucketName: process.env.REACT_APP_BUCKET_NAME,
+          dirName: process.env.REACT_APP_DIR_NAME /* optional */,
+          region: process.env.REACT_APP_REGION,
+          accessKeyId: process.env.REACT_APP_ACCESS_ID,
+          secretAccessKey: process.env.REACT_APP_ACCESS_KEY,
+        };
+        const ReactS3Client = new S3(config);
+        ReactS3Client.uploadFile(file, newFileName).then((data) => {
+          console.log(data);
+          if (data.status === 204) {
+            console.log("success");
+          } else {
+            console.log("fail");
+          }
+        });
+      };
+
+
+
     function showNotifSuccess(){
         document.getElementById("notif-success").style.display="block";
     }
@@ -181,9 +211,9 @@ function ViewAssignmentList() {
              <span className="form-title">Upload Assignment</span>
                 <div className="form-field-container">
                 <label className="form-field-label">Upload File</label>
-                <input className="form-field full-width-field" type="file" />
+                <input className="form-field full-width-field" type="file" ref={fileInput} />
                 </div>
-                <button className="submit-button" onClick={submitAssignment} >SUBMIT</button>
+                <button className="submit-button" onClick={handleClick} >SUBMIT</button>
                 <button className="submit-button button-secondary" onClick={hideUpload}>CLOSE</button>
              </div>
          </div>
