@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./add-teacher"
 
 
@@ -9,15 +9,32 @@ function AddTeacher() {
     const [fullname, setFullname] = useState('')
     const [teacherPhoneNumber, setTeacherPhoneNumber] = useState('')
     const [teacherEmail, setTeacherEmail] = useState('')
+    const [teacherPassword, setTeacherPassword] = useState('')
     const [teacherDesc, setTeacherDesc] = useState('')
     const [branch, setBranch] = useState('')
+    const [searchQuery, setSearchQuery] = useState('')
+    const [branchListFetched, setBranchListFetched] = useState([])
+
+
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/branches?q=` + searchQuery, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                setBranchListFetched(data)
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    })
 
     function submitTeacher() {
         var validated = 1;
-        if (!profileImg) {
-            validated = 0;
-            document.getElementById('profile-image').style.border = "1px solid red";
-        }
 
         if (!fullname) {
             validated = 0;
@@ -32,6 +49,11 @@ function AddTeacher() {
         if (!teacherEmail) {
             validated = 0;
             document.getElementById('teacher-email').style.border = "1px solid red";
+        }
+
+        if (!teacherPassword) {
+            validated = 0;
+            document.getElementById('teacher-password').style.border = "1px solid red";
         }
 
         if (!teacherDesc) {
@@ -53,6 +75,7 @@ function AddTeacher() {
                 body: JSON.stringify({
                     name: fullname,
                     email: teacherEmail,
+                    password: teacherPassword,
                     phone_number: teacherPhoneNumber,
                     branch: branch,
                     short_desc: teacherDesc,
@@ -102,54 +125,62 @@ function AddTeacher() {
     }
     return (
         <>
-         <div className="screen-main">
-            <img src="/bg-2.png" className="bg-img-1"/>
-            <img src="/bg-4.png" className="bg-img-2"/>
-            <img src="/bg-1.png" className="bg-img-3"/>
-            <img src="/bg-3.png" className="bg-img-4"/>
+            <div className="screen-main">
+                <img src="/bg-2.png" className="bg-img-1" />
+                <img src="/bg-4.png" className="bg-img-2" />
+                <img src="/bg-1.png" className="bg-img-3" />
+                <img src="/bg-3.png" className="bg-img-4" />
 
-            <div className="form-container">
-                <span className="form-title">Add Teacher</span>
-                <div className="form-field-container">
-                    <label className="form-field-label">Profile Picture</label>
-                    <input className="form-field" id="profile-image" type="file" />
+                <div className="form-container">
+                    <span className="form-title">Add Teacher</span>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Profile Picture</label>
+                        <input className="form-field" id="profile-image" type="file" />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Fullname</label>
+                        <input className="form-field" id="teacher-full-name" type="text" value={fullname} onChange={e => { e.preventDefault(); setFullname(e.target.value) }} />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Phone Number</label>
+                        <input className="form-field" id="teacher-phone-number" type="text" value={teacherPhoneNumber} onChange={e => { e.preventDefault(); setTeacherPhoneNumber(e.target.value) }} />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Email Address</label>
+                        <input className="form-field" id="teacher-email" type="text" value={teacherEmail} onChange={e => { e.preventDefault(); setTeacherEmail(e.target.value) }} />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Password</label>
+                        <input className="form-field" id="teacher-password" type="text" value={teacherPassword} onChange={e => { e.preventDefault(); setTeacherPassword(e.target.value) }} />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">Description</label>
+                        <input className="form-field" id="teacher-description" type="text" value={teacherDesc} onChange={e => { e.preventDefault(); setTeacherDesc(e.target.value) }} />
+                    </div>
+                    <div className="form-field-container">
+                        <label className="form-field-label">School Branch</label>
+                        <select className="form-field" id="branch" onChange={e => { e.preventDefault(); setBranch(e.target.value) }}>
+                            {branchListFetched.map((item) => {
+                                return <option value={item._id}>{item.branch_name}</option>
+                            })}
+                        </select>
+                    </div>
+                    <button className="submit-button" onClick={submitTeacher}>SUBMIT</button>
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Fullname</label>
-                    <input className="form-field" id="teacher-full-name" type="text" value={fullname} onChange={e => { e.preventDefault(); setFullname(e.target.value) }} />
+                <div className="notif-component-success" id="notif-success">
+                    <label className="notif-component-text">Success!</label>
+                    <br />
+                    <label className="notif-component-message">Teacher added.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
                 </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Phone Number</label>
-                    <input className="form-field" id="teacher-phone-number" type="text" value={teacherPhoneNumber} onChange={e => { e.preventDefault(); setTeacherPhoneNumber(e.target.value) }} />
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Email Address</label>
-                    <input className="form-field" id="teacher-email" type="text" value={teacherEmail} onChange={e => { e.preventDefault(); setTeacherEmail(e.target.value) }} />
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">Description</label>
-                    <input className="form-field" id="teacher-description" type="text" value={teacherDesc} onChange={e => { e.preventDefault(); setTeacherDesc(e.target.value) }} />
-                </div>
-                <div className="form-field-container">
-                    <label className="form-field-label">School Branch</label>
-                    <input className="form-field" id="branch" type="text" value={branch} onChange={e => { e.preventDefault(); setBranch(e.target.value) }} />
-                </div>
-                <button className="submit-button" onClick={submitTeacher}>SUBMIT</button>
-            </div>
-            <div className="notif-component-success" id="notif-success">
-                <label className="notif-component-text">Success!</label>
-                <br />
-                <label className="notif-component-message">Teacher added.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
-            </div>
 
-            <div className="notif-component-failed" id="notif-failed">
-                <label className="notif-component-text">Failed!</label>
-                <br />
-                <label className="notif-component-message">Error occured, try again.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                <div className="notif-component-failed" id="notif-failed">
+                    <label className="notif-component-text">Failed!</label>
+                    <br />
+                    <label className="notif-component-message">Error occured, try again.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                </div>
             </div>
-        </div>
         </>
     )
 }

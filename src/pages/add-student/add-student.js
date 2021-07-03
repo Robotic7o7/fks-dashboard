@@ -277,7 +277,7 @@ function AddStudent() {
                             <select className="form-field" type="text" id="student-branch" value={studentBranch} onChange={e => { e.preventDefault(); setStudentBranch(e.target.value) }}>
                                 {branchList.map((item) => {
                                     return (
-                                        <option value={item.branch_name}>{item.branch_name}</option>
+                                        <option value={item._id}>{item.branch_name}</option>
                                     )
                                 })}
                             </select>
@@ -301,7 +301,7 @@ function AddStudent() {
                         </div>
                         <div className="form-field-container">
                             <label className="form-field-label">Class Of Joining</label>
-                            <select className="form-field" type="text" id="student-COJ" value={studentCOJ} onChange={e => { e.preventDefault(); setStudentCOJ(e.target.value); getSubjects(studentCOJ) }}>
+                            <select className="form-field" type="text" id="student-COJ" onChange={e => { e.preventDefault(); setStudentCOJ(e.target.value); getSubjects(studentCOJ) }}>
                                 <option selected>--select-class--</option>
                                 {classList.map((item) => {
                                     return (
@@ -342,10 +342,10 @@ function AddStudent() {
                 <label className="notif-component-message">Error occured, try again.</label>
                 <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
             </div>
-            <img src="/bg-2.png" className="bg-img-1"/>
+            {/* <img src="/bg-2.png" className="bg-img-1"/>
             <img src="/bg-4.png" className="bg-img-2"/>
             <img src="/bg-1.png" className="bg-img-3"/>
-            <img src="/bg-3.png" className="bg-img-4"/>
+            <img src="/bg-3.png" className="bg-img-4"/> */}
         </div>
 
 
