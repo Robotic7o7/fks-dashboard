@@ -57,7 +57,7 @@ function GenderRatioPie() {
     };
 
     return (
-        <div className="screen-main">
+        <div className="screen-main full-height-screen">
         <img src="/bg-2.png" className="bg-img-1"/>
         <img src="/bg-4.png" className="bg-img-2"/>
         <img src="/bg-1.png" className="bg-img-3"/>

@@ -64,11 +64,11 @@ function LoginPage() {
             <span className="form-title">Login Here</span>
             <div className="form-field-container">
                 <label className="form-field-label" >Email</label>
-                <input className="form-field" type="text" id="email" value={email} onChange={e=>{e.preventDefault();setEmail(e.target.value)}}/>
+                <input className="form-field full-width-field" type="text" id="email" value={email} onChange={e=>{e.preventDefault();setEmail(e.target.value)}}/>
             </div>
             <div className="form-field-container">
                 <label className="form-field-label" >Password</label>
-                <input className="form-field" type="password" id="password" value={password} onChange={e=>{e.preventDefault();setPassword(e.target.value)}} />
+                <input className="form-field full-width-field" type="password" id="password" value={password} onChange={e=>{e.preventDefault();setPassword(e.target.value)}} />
             </div>
             <button className="submit-button" onClick={e=>{e.preventDefault();submitForm()}}>SUBMIT</button>
         </div>

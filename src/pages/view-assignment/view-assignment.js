@@ -2,13 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import "./view-assignment.css"
+import axios from 'axios';
 
 
 function ViewAssignment(props) {
 
     const { id } = useParams()
     const [assignment, setAssignment] = useState('')
-    const [assignmentImg, setAssignmentImg]= useState(null);
+    const [assignmentImgURL, setAssignmentImgURL]= useState(null);
 
     useEffect(() => {
         console.log(id)
@@ -36,36 +37,51 @@ function ViewAssignment(props) {
     //option counter
     var j = 1;
 
-
-    function submitAssignment(){
-        fetch('http://localhost:3000/upload/:id/upload', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                student_id: localStorage.getItem('user_id'),
-                assignment_id: id,
-                
-            }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message != "failed") {
-                    console.log(data)
-                    showNotifSuccess()
-                }
-
-                else {
-                    showNotifFailed()
-                }
+     //file upload logic
+     function uploadFile(event) {
+        const data = new FormData();
+        data.append('file', event.target.files[0]);
+        axios.post("http://localhost:3000/upload/upload_assignment_img", data)
+            .then(res => { // then print response status
+                console.log(res.data.images);
+                console.log(res);
+                setAssignmentImgURL(res.data.images);
+                saveAssignment(res.data.images)
             })
-            .catch((error) => {
-                showNotifFailed()
-                console.error('Error:', error);
-            });
-
     }
+
+
+        //save assignment logic
+
+
+        function saveAssignment(fileurl) {
+
+            fetch(`http://localhost:3000/upload/${id}/upload_img`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    student_id: localStorage.getItem('user_id'),
+                    fileURL: fileurl
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message != "failed") {
+                        console.log(data)
+                        showNotifSuccess()
+                    }
+    
+                    else {
+                        showNotifFailed()
+                    }
+                })
+                .catch((error) => {
+                    showNotifFailed()
+                    console.error('Error:', error);
+                });
+        }
 
     function displayUpload(){
         document.getElementById("assignment-upload").style.display="grid";
@@ -77,6 +93,7 @@ function ViewAssignment(props) {
 
     function showNotifSuccess(){
         document.getElementById("notif-success").style.display="block";
+        hideUpload();
     }
 
     function showNotifFailed(){
@@ -145,9 +162,9 @@ function ViewAssignment(props) {
              <span className="form-title">Upload Assignment</span>
                 <div className="form-field-container">
                 <label className="form-field-label">Upload File</label>
-                <input className="form-field full-width-field" type="file" onChange={e=>{setAssignmentImg(e.target.files[0])}} />
+                <input className="form-field full-width-field" type="file" onChange={e => { uploadFile(e) }} />
                 </div>
-                <button className="submit-button" onClick={submitAssignment} >SUBMIT</button>
+                <button className="submit-button" onClick={hideUpload} >SUBMIT</button>
                 <button className="submit-button button-secondary" onClick={hideUpload}>CLOSE</button>
              </div>
          </div>
@@ -157,14 +174,14 @@ function ViewAssignment(props) {
             <label className="notif-component-text">Success!</label>
             <br/>
             <label className="notif-component-message">Assignment Submitted.</label>
-            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+            <img src="/icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
         </div>
 
         <div className="notif-component-failed" id="notif-failed">
             <label className="notif-component-text">Failed!</label>
             <br/>
             <label className="notif-component-message">Error occured, try again.</label>
-            <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
+            <img src="/icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif}/>
         </div>
             </>
         )
