@@ -176,7 +176,7 @@ function ViewStudentList() {
                                 <tr>
                                     <td>{item.name}</td>
                                     <td>{item.email}</td>
-                                    <td>{item.class}</td>
+                                    <td>{item.class.class_name}</td>
                                     <td>
                                         <Link to={"/view-student/" + item._id} className="action-item">View Details</Link><br />
                                         <span className="action-item">View Parents</span><br />
