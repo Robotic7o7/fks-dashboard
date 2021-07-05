@@ -21,6 +21,31 @@ function AddStudent() {
     const [classList, setClassList] = useState([]);
     const [subjectList, setSubjectList] = useState([]);
 
+
+    //parent 1
+
+    const [parent1Name, setParent1Name] = useState('')
+    const [parent1Email, setParent1Email] = useState('')
+    const [parent1Password, setParent1Password] = useState('')
+    const [parent1PhoneNumber, setParent1PhoneNumber] = useState('')
+    const [parent1JobIndustry, setParent1JobIndustry] = useState('')
+    const [parent1JobDesc, setParent1JobDesc] = useState('')
+    const [parent1OfficeAddress, setParent1OfficeAddress] = useState('')
+    const [parent1OfficePhoneNumber, setParent1OfficePhoneNumber] = useState('')
+    const [parent1Relationship, setParent1Relationship] = useState('')
+
+    //parent 2
+
+    const [parent2Name, setParent2Name] = useState('')
+    const [parent2Email, setParent2Email] = useState('')
+    const [parent2Password, setParent2Password] = useState('')
+    const [parent2PhoneNumber, setParent2PhoneNumber] = useState('')
+    const [parent2JobIndustry, setParent2JobIndustry] = useState('')
+    const [parent2JobDesc, setParent2JobDesc] = useState('')
+    const [parent2OfficeAddress, setParent2OfficeAddress] = useState('')
+    const [parent2OfficePhoneNumber, setParent2OfficePhoneNumber] = useState('')
+    const [parent2Relationship, setParent2Relationship] = useState('')
+
     function submitForm() {
         var validated = 1;
         if (!admissionNumber) {
@@ -87,7 +112,74 @@ function AddStudent() {
                 .then(data => {
                     if (data.message != "failed") {
                         console.log(data)
-                        showNotifSuccess()
+                        fetch('http://localhost:3000/users/new_parent', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                student_id: data.id,
+                                name: parent1Name,
+                                email: parent1Email,
+                                password: parent1Password,
+                                phone_number: parent1PhoneNumber,
+                                job_industry: parent1JobIndustry,
+                                job_description: parent1JobDesc,
+                                office_address: parent1OfficeAddress,
+                                office_phone_number: parent1OfficePhoneNumber,
+                                relationship: parent1Relationship
+                            }),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.message != "failed") {
+                                    console.log(data)
+                                    showNotifSuccess()
+                                }
+
+                                else {
+                                    showNotifFailed()
+                                }
+                            })
+                            .catch((error) => {
+                                showNotifFailed()
+                                console.error('Error:', error);
+                            });
+
+
+                        fetch('http://localhost:3000/users/new_parent', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                student_id:data.id,
+                                name: parent2Name,
+                                email: parent2Email,
+                                password: parent2Password,
+                                phone_number: parent2PhoneNumber,
+                                job_industry: parent2JobIndustry,
+                                job_description: parent2JobDesc,
+                                office_address: parent2OfficeAddress,
+                                office_phone_number: parent2OfficePhoneNumber,
+                                relationship: parent2Relationship
+                            }),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.message != "failed") {
+                                    console.log(data)
+                                    showNotifSuccess()
+                                }
+
+                                else {
+                                    showNotifFailed()
+                                }
+                            })
+                            .catch((error) => {
+                                showNotifFailed()
+                                console.error('Error:', error);
+                            });
                         clearInput()
                     }
 
@@ -195,161 +287,254 @@ function AddStudent() {
 
     return (
         <>
-         <div className="screen-main">
-            
+            <div className="screen-main">
 
-            <div className="form-layout" id="add-assignment-form">
-                <div className="form-layout-row">
-                    <div className="form-layout-70">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Fullname</label>
-                            <input className="form-field full-width-field" type="text" id="student-full-name" value={studentFullName} onChange={e => { e.preventDefault(); setStudentFullName(e.target.value) }} />
-                        </div>
-                    </div>
-                    <div className="form-layout-30">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Profile Picture</label>
-                            <input className="form-field" type="file" />
-                        </div>
-                    </div>
-                </div>
 
-                <div className="form-layout-row">
-                    <div className="form-layout-25">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Admission Number</label>
-                            <input className="form-field" type="text" id="admission-number" value={admissionNumber} onChange={e => { e.preventDefault(); setAdmissionNumber(e.target.value) }} />
+                <div className="form-layout" id="add-assignment-form">
+                    <div className="form-layout-row">
+                        <div className="form-layout-70">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Fullname</label>
+                                <input className="form-field full-width-field" type="text" id="student-full-name" value={studentFullName} onChange={e => { e.preventDefault(); setStudentFullName(e.target.value) }} />
+                            </div>
+                        </div>
+                        <div className="form-layout-30">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Profile Picture</label>
+                                <input className="form-field" type="file" />
+                            </div>
                         </div>
                     </div>
 
-                    <div className="form-layout-25">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Gender</label>
-                            <select className="form-field" type="text" id="student-gender" value={studentGender} onChange={e => { e.preventDefault(); setStudentGender(e.target.value) }}>
-                                <option value="MALE">Male</option>
-                                <option value="FEMALE">Female</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="form-layout-25">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Date Of Birth</label>
-                            <input className="form-field" type="date" id="student-DOB" value={studentDOB} onChange={e => { e.preventDefault(); setStudentDOB(e.target.value) }} />
-
+                    <div className="form-layout-row">
+                        <div className="form-layout-25">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Admission Number</label>
+                                <input className="form-field" type="text" id="admission-number" value={admissionNumber} onChange={e => { e.preventDefault(); setAdmissionNumber(e.target.value) }} />
+                            </div>
                         </div>
 
-                    </div>
-                    <div className="form-layout-25">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Blood Group</label>
-                            <select className="form-field" type="text" id="student-blood-group" value={studentBloodGroup} onChange={e => { e.preventDefault(); setStudentBloodGroup(e.target.value) }}>
-                                <option value="A_POSITIVE">A Positive</option>
-                                <option value="O_POSITIVE">O Positive</option>
-                                <option value="B_POSITIVE">B Positive</option>
-                                <option value="AB_POSITIVE">AB Positive</option>
-                                <option value="AB_POSITIVE">AB Positive</option>
-                                <option value="A_NEGATIVE">A Negative</option>
-                                <option value="O_NEGATIVE">O Negative</option>
-                                <option value="B_NEGATIVE">B Negative</option>
-                                <option value="AB_NEGATIVE">AB Negative</option>
-                            </select>
+                        <div className="form-layout-25">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Gender</label>
+                                <select className="form-field" type="text" id="student-gender" value={studentGender} onChange={e => { e.preventDefault(); setStudentGender(e.target.value) }}>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        <div className="form-layout-25">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Date Of Birth</label>
+                                <input className="form-field" type="date" id="student-DOB" value={studentDOB} onChange={e => { e.preventDefault(); setStudentDOB(e.target.value) }} />
 
-                <div className="form-layout-row">
-                    <div className="form-layout-25">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Email</label>
-                            <input className="form-field" type="text" id="student-email" value={studentEmail} onChange={e => { e.preventDefault(); setStudentEmail(e.target.value) }} />
-                        </div>
+                            </div>
 
-                    </div>
-                    <div className="form-layout-25">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Password</label>
-                            <input className="form-field" type="text" id="student-password" value={password} onChange={e => { e.preventDefault(); setPassword(e.target.value) }} />
+                        </div>
+                        <div className="form-layout-25">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Blood Group</label>
+                                <select className="form-field" type="text" id="student-blood-group" value={studentBloodGroup} onChange={e => { e.preventDefault(); setStudentBloodGroup(e.target.value) }}>
+                                    <option value="A_POSITIVE">A Positive</option>
+                                    <option value="O_POSITIVE">O Positive</option>
+                                    <option value="B_POSITIVE">B Positive</option>
+                                    <option value="AB_POSITIVE">AB Positive</option>
+                                    <option value="AB_POSITIVE">AB Positive</option>
+                                    <option value="A_NEGATIVE">A Negative</option>
+                                    <option value="O_NEGATIVE">O Negative</option>
+                                    <option value="B_NEGATIVE">B Negative</option>
+                                    <option value="AB_NEGATIVE">AB Negative</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div className="form-layout-25">
-                        <div className="form-field-container">
-                            <label className="form-field-label">School Branch</label>
-                            <select className="form-field" type="text" id="student-branch" value={studentBranch} onChange={e => { e.preventDefault(); setStudentBranch(e.target.value) }}>
-                                {branchList.map((item) => {
-                                    return (
-                                        <option value={item._id}>{item.branch_name}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
 
-                    </div>
-                    <div className="form-layout-25"></div>
-                </div>
+                    <div className="form-layout-row">
+                        <div className="form-layout-25">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Email</label>
+                                <input className="form-field" type="text" id="student-email" value={studentEmail} onChange={e => { e.preventDefault(); setStudentEmail(e.target.value) }} />
+                            </div>
 
-                <div className="form-layout-row">
-                    <div className="form-layout-70">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Home Address</label>
-                            <input className="form-field student-address-field" type="text" id="student-address" value={studentAddress} onChange={e => { e.preventDefault(); setStudentAddress(e.target.value) }} />
                         </div>
+                        <div className="form-layout-25">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Password</label>
+                                <input className="form-field" type="text" id="student-password" value={password} onChange={e => { e.preventDefault(); setPassword(e.target.value) }} />
+                            </div>
+                        </div>
+                        <div className="form-layout-25">
+                            <div className="form-field-container">
+                                <label className="form-field-label">School Branch</label>
+                                <select className="form-field" type="text" id="student-branch" value={studentBranch} onChange={e => { e.preventDefault(); setStudentBranch(e.target.value) }}>
+                                    {branchList.map((item) => {
+                                        return (
+                                            <option value={item._id}>{item.branch_name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+
+                        </div>
+                        <div className="form-layout-25"></div>
                     </div>
-                    <div className="form-layout-30 layout-stacked">
-                        <div className="form-field-container">
-                            <label className="form-field-label">Year Of Joining</label>
-                            <input className="form-field" type="text" id="student-YOJ" value={studentYOJ} onChange={e => { e.preventDefault(); setStudentYOJ(e.target.value) }} />
+
+                    <div className="form-layout-row">
+                        <div className="form-layout-70">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Home Address</label>
+                                <input className="form-field student-address-field" type="text" id="student-address" value={studentAddress} onChange={e => { e.preventDefault(); setStudentAddress(e.target.value) }} />
+                            </div>
                         </div>
-                        <div className="form-field-container">
-                            <label className="form-field-label">Class Of Joining</label>
-                            <select className="form-field" type="text" id="student-COJ" onChange={e => { e.preventDefault(); setStudentCOJ(e.target.value); getSubjects(studentCOJ) }}>
-                                <option selected>--select-class--</option>
-                                {classList.map((item) => {
-                                    return (
-                                        <option value={item._id}>{item.class_name}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-                        <div className="form-field-container">
-                            <label className="form-field-label">Subjects</label>
+                        <div className="form-layout-30 layout-stacked">
+                            <div className="form-field-container">
+                                <label className="form-field-label">Year Of Joining</label>
+                                <input className="form-field" type="text" id="student-YOJ" value={studentYOJ} onChange={e => { e.preventDefault(); setStudentYOJ(e.target.value) }} />
+                            </div>
+                            <div className="form-field-container">
+                                <label className="form-field-label">Class Of Joining</label>
+                                <select className="form-field" type="text" id="student-COJ" onChange={e => { e.preventDefault(); setStudentCOJ(e.target.value); getSubjects(studentCOJ) }}>
+                                    <option selected>--select-class--</option>
+                                    {classList.map((item) => {
+                                        return (
+                                            <option value={item._id}>{item.class_name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div className="form-field-container">
+                                <label className="form-field-label">Subjects</label>
                             Select All<input type="checkbox" />
-                            {subjectList.map((item) => {
-                                return (
-                                    <div>
-                                        {item.subject_name}<input type="checkbox" />
-                                    </div>
-                                )
-                            })}
+                                {subjectList.map((item) => {
+                                    return (
+                                        <div>
+                                            {item.subject_name}<input type="checkbox" />
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                            parent 1
+                <div className="form-field-container">
+                        <label className="form-field-label">name</label>
+                        <input class="form-field" type="text" value={parent1Name} onChange={e => { e.preventDefault(); setParent1Name(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">email</label>
+                        <input class="form-field" type="text" value={parent1Email} onChange={e => { e.preventDefault(); setParent1Email(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">password</label>
+                        <input class="form-field" type="text" value={parent1Password} onChange={e => { e.preventDefault(); setParent1Password(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">phone number</label>
+                        <input class="form-field" type="text" value={parent1PhoneNumber} onChange={e => { e.preventDefault(); setParent1PhoneNumber(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">job industry</label>
+                        <input class="form-field" type="text" value={parent1JobIndustry} onChange={e => { e.preventDefault(); setParent1JobIndustry(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">job description</label>
+                        <input class="form-field" type="text" value={parent1JobDesc} onChange={e => { e.preventDefault(); setParent1JobDesc(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">office address</label>
+                        <input class="form-field" type="text" value={parent1OfficeAddress} onChange={e => { e.preventDefault(); setParent1OfficeAddress(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">office phone number</label>
+                        <input class="form-field" type="text" value={parent1OfficePhoneNumber} onChange={e => { e.preventDefault(); setParent1OfficePhoneNumber(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">relationship to child</label>
+                        <input class="form-field" type="text" value={parent1Relationship} onChange={e => { e.preventDefault(); setParent1Relationship(e.target.value) }} />
+                    </div>
+
+                parent2
+
+                <div className="form-field-container">
+                        <label className="form-field-label">name</label>
+                        <input class="form-field" type="text" value={parent2Name} onChange={e => { e.preventDefault(); setParent2Name(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">email</label>
+                        <input class="form-field" type="text" value={parent2Email} onChange={e => { e.preventDefault(); setParent2Email(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">password</label>
+                        <input class="form-field" type="text" value={parent2Password} onChange={e => { e.preventDefault(); setParent2Password(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">phone number</label>
+                        <input class="form-field" type="text" value={parent2PhoneNumber} onChange={e => { e.preventDefault(); setParent2PhoneNumber(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">job industry</label>
+                        <input class="form-field" type="text" value={parent2JobIndustry} onChange={e => { e.preventDefault(); setParent2JobIndustry(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">job description</label>
+                        <input class="form-field" type="text" value={parent2JobDesc} onChange={e => { e.preventDefault(); setParent2JobDesc(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">office address</label>
+                        <input class="form-field" type="text" value={parent2OfficeAddress} onChange={e => { e.preventDefault(); setParent2OfficeAddress(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">office phone number</label>
+                        <input class="form-field" type="text" value={parent2OfficePhoneNumber} onChange={e => { e.preventDefault(); setParent2OfficePhoneNumber(e.target.value) }} />
+                    </div>
+
+                    <div className="form-field-container">
+                        <label className="form-field-label">relationship to child</label>
+                        <input class="form-field" type="text" value={parent2Relationship} onChange={e => { e.preventDefault(); setParent2Relationship(e.target.value) }} />
+                    </div>
+
+                    <div className="form-layout-row">
+                        <div className="form-layout-70">
+                            <button className="submit-button" onClick={submitForm}>SUBMIT</button>
                         </div>
                     </div>
                 </div>
-                <div className="form-layout-row">
-                    <div className="form-layout-70">
-                    <button className="submit-button" onClick={submitForm}>SUBMIT</button>
-                    </div>
+                <div className="notif-component-success" id="notif-success">
+                    <label className="notif-component-text">Success!</label>
+                    <br />
+                    <label className="notif-component-message">Student added.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
                 </div>
-            </div>
-            <div className="notif-component-success" id="notif-success">
-                <label className="notif-component-text">Success!</label>
-                <br />
-                <label className="notif-component-message">Student added.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
-            </div>
 
-            <div className="notif-component-failed" id="notif-failed">
-                <label className="notif-component-text">Failed!</label>
-                <br />
-                <label className="notif-component-message">Error occured, try again.</label>
-                <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
-            </div>
-            {/* <img src="/bg-2.png" className="bg-img-1"/>
+                <div className="notif-component-failed" id="notif-failed">
+                    <label className="notif-component-text">Failed!</label>
+                    <br />
+                    <label className="notif-component-message">Error occured, try again.</label>
+                    <img src="icons8-macos-close-60.png" className="notif-closeIcon" onClick={closeNotif} />
+                </div>
+                {/* <img src="/bg-2.png" className="bg-img-1"/>
             <img src="/bg-4.png" className="bg-img-2"/>
             <img src="/bg-1.png" className="bg-img-3"/>
             <img src="/bg-3.png" className="bg-img-4"/> */}
-        </div>
+            </div>
 
 
-            
+
         </>
     )
 }
