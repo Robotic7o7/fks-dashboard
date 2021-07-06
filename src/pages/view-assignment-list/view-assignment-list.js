@@ -18,7 +18,7 @@ function ViewAssignmentList() {
 
     //fetch assignments
     function getAssignments() {
-        fetch(`http://localhost:3000/assignments?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:3000/assignments?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ function ViewAssignmentList() {
 
     //fetch subjects
     function getSubjects() {
-        fetch(`http://localhost:3000/subjects?q=` + searchQuerySub, {
+        fetch(`http://165.22.210.235:3000/subjects?q=` + searchQuerySub, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ function ViewAssignmentList() {
 
     function saveAssignment(fileurl) {
 
-        fetch(`http://localhost:3000/upload/${assignmentID}/upload_img`, {
+        fetch(`http://165.22.210.235:3000/upload/${assignmentID}/upload_img`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ function ViewAssignmentList() {
     function uploadFile(event) {
         const data = new FormData();
         data.append('file', event.target.files[0]);
-        axios.post("http://localhost:3000/upload/upload_assignment_img", data)
+        axios.post("http://165.22.210.235:3000/upload/upload_assignment_img", data)
             .then(res => { // then print response status
                 console.log(res.data.images);
                 setAssignmentImgURL(res.data.images);

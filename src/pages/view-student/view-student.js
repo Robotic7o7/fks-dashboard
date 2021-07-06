@@ -12,7 +12,7 @@ function ViewStudent(props) {
 
     useEffect(()=>{
 
-        fetch('http://localhost:3000/users/'+id, {
+        fetch('http://165.22.210.235:3000/users/'+id, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

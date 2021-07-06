@@ -12,7 +12,7 @@ function News() {
     // const [updatedPass, setUpdatedPass] = useState('')
 
     function getPosts() {
-        fetch(`http://localhost:3000/posts`, {
+        fetch(`http://165.22.210.235:3000/posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function News() {
     }, [])
 
     function deletePost(id) {
-        fetch(`http://localhost:3000/posts/${id}/permanent_delete`, {
+        fetch(`http://165.22.210.235:3000/posts/${id}/permanent_delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

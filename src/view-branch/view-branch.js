@@ -16,7 +16,7 @@ function ViewBranch(props) {
 
     useEffect(() => {
 
-        fetch('http://localhost:3000/branches/' + id, {
+        fetch('http://165.22.210.235:3000/branches/' + id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ function ViewBranch(props) {
         }
 
         if (validated == 1) {
-            fetch(`http://localhost:3000/branches/${id}/update`, {
+            fetch(`http://165.22.210.235:3000/branches/${id}/update`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

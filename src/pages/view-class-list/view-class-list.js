@@ -13,7 +13,7 @@ function ViewClassList() {
     const [prevSub, setPrevSub] = useState({});
 
     function getClasses() {
-        fetch(`http://localhost:3000/classes?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:3000/classes?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ function ViewClassList() {
 
 
     function disableClass(id) {
-        fetch(`http://localhost:3000/classes/${id}/disable`, {
+        fetch(`http://165.22.210.235:3000/classes/${id}/disable`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ function ViewClassList() {
     }
 
     function deleteClass(id) {
-        fetch(`http://localhost:3000/classes/${id}/permanent_delete`, {
+        fetch(`http://165.22.210.235:3000/classes/${id}/permanent_delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ function ViewClassList() {
     }
 
     function fetchPrevSubs(id) {
-        fetch(`http://localhost:3000/classes/${id}/get_all_subjects`, {
+        fetch(`http://165.22.210.235:3000/classes/${id}/get_all_subjects`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function ViewClassList() {
     }
 
     function checkSubValidity(prevData) {
-        fetch(`http://localhost:3000/subjects?q=${updatedSub}`, {
+        fetch(`http://165.22.210.235:3000/subjects?q=${updatedSub}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

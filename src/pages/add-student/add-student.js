@@ -89,7 +89,7 @@ function AddStudent() {
             document.getElementById('student-COJ').style.border = "1px solid red";
         }
         if (validated == 1) {
-            fetch('http://localhost:3000/users/new_student', {
+            fetch('http://165.22.210.235:3000/users/new_student', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function AddStudent() {
                 .then(data => {
                     if (data.message != "failed") {
                         console.log(data)
-                        fetch('http://localhost:3000/users/new_parent', {
+                        fetch('http://165.22.210.235:3000/users/new_parent', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ function AddStudent() {
                             });
 
 
-                        fetch('http://localhost:3000/users/new_parent', {
+                        fetch('http://165.22.210.235:3000/users/new_parent', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -218,7 +218,7 @@ function AddStudent() {
 
 
     function getBranches() {
-        fetch(`http://localhost:3000/branches?q`, {
+        fetch(`http://165.22.210.235:3000/branches?q`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -235,7 +235,7 @@ function AddStudent() {
     }
 
     function getClasses() {
-        fetch(`http://localhost:3000/classes?q`, {
+        fetch(`http://165.22.210.235:3000/classes?q`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -252,7 +252,7 @@ function AddStudent() {
     }
 
     function getSubjects(id) {
-        fetch(`http://localhost:3000/classes/${id}/get_all_subjects`, {
+        fetch(`http://165.22.210.235:3000/classes/${id}/get_all_subjects`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

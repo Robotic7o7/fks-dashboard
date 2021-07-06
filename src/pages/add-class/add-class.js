@@ -62,7 +62,7 @@ function AddClass() {
     }, [subjectListFetched, teacherListFetched])
 
     function getSubjects(searchQuery) {
-        fetch(`http://localhost:3000/subjects?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:3000/subjects?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ function AddClass() {
 
 
     function getTeachers(searchQuery) {
-        fetch(`http://localhost:3000/users/teachers?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:3000/users/teachers?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ function AddClass() {
         }
 
         if (validated == 1) {
-            fetch('http://localhost:3000/classes/new', {
+            fetch('http://165.22.210.235:3000/classes/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

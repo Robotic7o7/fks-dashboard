@@ -95,7 +95,7 @@ function AddAssignment() {
     }
 
     function getSubjects(searchQuery) {
-        fetch(`http://localhost:3000/subjects?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:3000/subjects?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ function AddAssignment() {
     }
 
     function getStudents(searchQuery) {
-        fetch(`http://localhost:3000/users/students?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:3000/users/students?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ function AddAssignment() {
     }
 
     function getClasses(searchQuery) {
-        fetch(`http://localhost:3000/classes?q=` + searchQuery, {
+        fetch(`http://165.22.210.235:3000/classes?q=` + searchQuery, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -245,7 +245,7 @@ function AddAssignment() {
                 questions: JSON.parse(questionObj),
                 fileURL: localStorage.getItem('assignmentImg')
             }))
-            fetch('http://localhost:3000/assignments/new', {
+            fetch('http://165.22.210.235:3000/assignments/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -287,7 +287,7 @@ function AddAssignment() {
     function uploadFile(event) {
         const data = new FormData();
         data.append('file', event.target.files[0]);
-        axios.post("http://localhost:3000/assignments/upload_assignment_img", data)
+        axios.post("http://165.22.210.235:3000/assignments/upload_assignment_img", data)
             .then(res => { // then print response status
                 console.log(res);
                 localStorage.setItem('assignmentImg', res.data.images);

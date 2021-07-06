@@ -14,7 +14,7 @@ function ViewAssignment(props) {
     useEffect(() => {
         console.log(id)
 
-        fetch(`http://localhost:3000/assignments/${id}`, {
+        fetch(`http://165.22.210.235:3000/assignments/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ function ViewAssignment(props) {
      function uploadFile(event) {
         const data = new FormData();
         data.append('file', event.target.files[0]);
-        axios.post("http://localhost:3000/upload/upload_assignment_img", data)
+        axios.post("http://165.22.210.235:3000/upload/upload_assignment_img", data)
             .then(res => { // then print response status
                 console.log(res.data.images);
                 console.log(res);
@@ -56,7 +56,7 @@ function ViewAssignment(props) {
 
         function saveAssignment(fileurl) {
 
-            fetch(`http://localhost:3000/upload/${id}/upload_img`, {
+            fetch(`http://165.22.210.235:3000/upload/${id}/upload_img`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

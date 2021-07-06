@@ -14,7 +14,7 @@ function AddSubject() {
         }
 
         if (validated == 1) {
-            fetch('http://localhost:3000/subjects/new', {
+            fetch('http://165.22.210.235:3000/subjects/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
