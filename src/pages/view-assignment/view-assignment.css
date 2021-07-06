@@ -45,6 +45,10 @@
     font-weight:400;
 }
 
+.assignment-image-view-section{
+    margin-top:40px;
+}
+
 .assignment-image-view{
     height:200px;
     width:500px;
