@@ -47,8 +47,8 @@ function Nav() {
         <div className="nav">
             <div className="nav-left"></div>
             <div className="nav-right">
-                <span className="nav-item" onClick={e => { e.preventDefault(); makeActive(e) }}><img src="/icons/news.png" className="nav-icon" />Dictionary</span>
-                <span className="nav-item" onClick={e => { e.preventDefault(); makeActive(e); toggleCalculator(e) }}><img src="/icons/calculator.png" className="nav-icon" />Calculator</span>
+                {/* <span className="nav-item" onClick={e => { e.preventDefault(); makeActive(e) }}><img src="/icons/news.png" className="nav-icon" />Dictionary</span>
+                <span className="nav-item" onClick={e => { e.preventDefault(); makeActive(e); toggleCalculator(e) }}><img src="/icons/calculator.png" className="nav-icon" />Calculator</span> */}
                 <span className="nav-item" onClick={e => { e.preventDefault(); toggleNotifications(e) }}> <img src="/icons/updates.png" className="nav-icon" />Updates
                     <div className="notifications-container">
                         <span className="notifications-item" onClick={e => { e.stopPropagation(); }}>Test</span>
