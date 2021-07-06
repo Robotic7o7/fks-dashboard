@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./add-assignment.css"
+import axios from 'axios';
 
 function AddAssignment() {
 
@@ -17,6 +18,7 @@ function AddAssignment() {
     const [classListFetched, setClassListFetched] = useState([])
     const [classListLocal, setClassListLocal] = useState([])
     const [classListId, setClassListId] = useState([])
+    const [fileEvent, setFileEvent] = useState({});
 
     function addQuestion(e) {
         var addAssignmentForm = document.getElementById('add-assignment-form')
@@ -225,8 +227,24 @@ function AddAssignment() {
             validated = 0;
             document.getElementById('assignment-subject').style.border = "1px solid red";
         }
+        if (!(localStorage.getItem('assignmentImg'))) {
+            validated = 0;
+            document.getElementById('assignment-file').style.border = "1px solid red";
+        }
 
         if (validated == 1) {
+
+            console.log(JSON.stringify({
+                assignment_name: assignmentName,
+                assignment_type: assignmentCategory,
+                due_date: assignmentDueDate,
+                is_graded: isGraded,
+                class_list: classListId,
+                student_list: studentListId,
+                subject: assignmentSubjectId,
+                questions: JSON.parse(questionObj),
+                fileURL: localStorage.getItem('assignmentImg')
+            }))
             fetch('http://localhost:3000/assignments/new', {
                 method: 'POST',
                 headers: {
@@ -240,7 +258,8 @@ function AddAssignment() {
                     class_list: classListId,
                     student_list: studentListId,
                     subject: assignmentSubjectId,
-                    questions: JSON.parse(questionObj)
+                    questions: JSON.parse(questionObj),
+                    fileURL: localStorage.getItem('assignmentImg')
                 }),
             })
                 .then(response => response.json())
@@ -259,9 +278,23 @@ function AddAssignment() {
                     showNotifFailed()
                     console.error('Error:', error);
                 });
+           
 
         }
     }
+
+
+    function uploadFile(event) {
+        const data = new FormData();
+        data.append('file', event.target.files[0]);
+        axios.post("http://localhost:3000/assignments/upload_assignment_img", data)
+            .then(res => { // then print response status
+                console.log(res);
+                localStorage.setItem('assignmentImg', res.data.images);
+                console.log(localStorage.getItem('assignmentImg'));
+            })
+    }
+
 
     useEffect(() => {
         if (document.getElementById('class-list').value) {
@@ -414,6 +447,13 @@ function AddAssignment() {
                                     })}
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="form-layout-25">
+                        <div className="form-field-container">
+                            <label className="form-field-label">Upload File</label>
+                            <input type="file" className="form-field" id="assignment-file" onChange={e=>{uploadFile(e)}} />
+                        </div>
                         </div>
                     </div>
 

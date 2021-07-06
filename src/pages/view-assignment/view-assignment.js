@@ -121,6 +121,14 @@ function ViewAssignment(props) {
 
                 <div className="assignment-details">
                     <span className="assignment-details-name">{assignment.assignment_name}</span>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div>
+                    <span className="question-value">Assignment Image</span>
+                    <img src={`https://fks-assignments.s3.ap-south-1.amazonaws.com/${assignment.file}`} className="assignment-image-view"/>
+                    </div>
+                    
                     {assignment.questions.map((item) => {
                         if (item.question_type == "MCQ") {
                             return (
