@@ -415,7 +415,145 @@ function AddStudent() {
                             </div>
                         </div>
                     </div>
-                            parent 1
+                    <div className="form-layout-row">
+                        {/* <div className="form-layout-70"> */}
+                            <table>
+                                <thead>
+                                    <th colspan="2">parent 1</th>
+                                    <th colspan="2">parent 2</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">name</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1Name} onChange={e => { e.preventDefault(); setParent1Name(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">name</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2Name} onChange={e => { e.preventDefault(); setParent2Name(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">email</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1Email} onChange={e => { e.preventDefault(); setParent1Email(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">email</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2Email} onChange={e => { e.preventDefault(); setParent2Email(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">password</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1Password} onChange={e => { e.preventDefault(); setParent1Password(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">password</label>
+                                        </td>
+                                        <td>
+                                           <input class="form-field" type="text" value={parent2Password} onChange={e => { e.preventDefault(); setParent2Password(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">phone number</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1PhoneNumber} onChange={e => { e.preventDefault(); setParent1PhoneNumber(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">phone number</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2PhoneNumber} onChange={e => { e.preventDefault(); setParent2PhoneNumber(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">job industry</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1JobIndustry} onChange={e => { e.preventDefault(); setParent1JobIndustry(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">job industry</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2JobIndustry} onChange={e => { e.preventDefault(); setParent2JobIndustry(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">job description</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1JobDesc} onChange={e => { e.preventDefault(); setParent1JobDesc(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">job description</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2JobDesc} onChange={e => { e.preventDefault(); setParent2JobDesc(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">office address</label>
+                                        </td> 
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1OfficeAddress} onChange={e => { e.preventDefault(); setParent1OfficeAddress(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">office address</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2OfficeAddress} onChange={e => { e.preventDefault(); setParent2OfficeAddress(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">office phone number</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1OfficePhoneNumber} onChange={e => { e.preventDefault(); setParent1OfficePhoneNumber(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">office phone number</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2OfficePhoneNumber} onChange={e => { e.preventDefault(); setParent2OfficePhoneNumber(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label className="form-field-label">relationship to child</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent1Relationship} onChange={e => { e.preventDefault(); setParent1Relationship(e.target.value) }} />
+                                        </td>
+                                        <td>
+                                            <label className="form-field-label">relationship to child</label>
+                                        </td>
+                                        <td>
+                                            <input class="form-field" type="text" value={parent2Relationship} onChange={e => { e.preventDefault(); setParent2Relationship(e.target.value) }} />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        {/* </div> */}
+                    </div>
+                            {/* parent 1
                 <div className="form-field-container">
                         <label className="form-field-label">name</label>
                         <input class="form-field" type="text" value={parent1Name} onChange={e => { e.preventDefault(); setParent1Name(e.target.value) }} />
@@ -506,7 +644,7 @@ function AddStudent() {
                     <div className="form-field-container">
                         <label className="form-field-label">relationship to child</label>
                         <input class="form-field" type="text" value={parent2Relationship} onChange={e => { e.preventDefault(); setParent2Relationship(e.target.value) }} />
-                    </div>
+                    </div> */}
 
                     <div className="form-layout-row">
                         <div className="form-layout-70">
